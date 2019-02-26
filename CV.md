@@ -11,7 +11,7 @@ image:
 ---
 
 ### Current Affiliations
-Co-Founder and VP of Genomics [Rev Genomics](www.revgenomics.com)
+Co-Founder and VP of Genomics [Rev Genomics](https://www.revgenomics.com/)
 
 ### Previous Affiliations
 *   NSF Postdoctoral Fellow - [UC Davis Department of Plant Biology](http://www-plb.ucdavis.edu/) __2014-17__
