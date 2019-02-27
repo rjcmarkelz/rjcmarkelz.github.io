@@ -4,13 +4,13 @@ permalink: /about/
 title: Professional learner interested in plants and computers.
 tagline:
 tags:
-modified: 10-13-2017
+modified: 02-26-2019
 comments: false
 image:
   feature: texture-feature-06.jpg
 ---
 
-I am currently a co-founder and the VP of Genomics at [Rev Genomics](https://www.revgenomics.com/). Rev Genomics leverages large datasets to make genetic improvements in high-value crops.
+I am currently a co-founder and the VP of Genomics at [Rev Genomics](https://www.revgenomics.com/). Rev Genomics uses genomics, statistics, molecular genetics, and tissue culture to create new strains of Cannabis for the legal market.
 
 
 During my graduate work I studied the effects of elevated atmospheric carbon dioxide on plant carbon and nitrogen metabolism in the [Leakey Lab](https://lab.igb.illinois.edu/leakey/). I blended this eco-physio-genomics training with computational and quantitative genetics to build genetically informed growth models of *Brassica rapa* and *Arabidopsis thaliana*. I was co-advised on this NSF postdoctoral research fellowship project by [Dr. Julin Maloof](http://malooflab.phytonetworks.org/) and [Dr. Dan Kliebenstein](http://www.plantsciences.ucdavis.edu/kliebenstein/).
