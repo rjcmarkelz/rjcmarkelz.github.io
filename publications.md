@@ -36,6 +36,10 @@ image:
 
 *	Leakey ADB, Ainsworth EA, Bernard SM, __Markelz RJC__, Ort DR, Placella S, Rogers A, Smith MD, Sudderth EA, Weston DJ, Wullschleger SD, Yuan S (__2009__) Gene expression profiling – opening the black box of plant ecosystem responses to global change. Global Change Biology. 15:1201-1213. [paper](/pdfs/Leakey_etal_2009.pdf)
 
+### In-Review
+
+* Baker RL, Leong W, Brock MT, Rubin MJ, __Markelz RJC__, Welch S,  Maloof JN, Weinig C (in review) Integrating transcriptomic network reconstruction and QTL analyses reveals mechanistic connections between genomic architecture and Brassica rapa development.
+
 ### In-prep
 
 * __Markelz RJC__, Devisetty UK, Covington MF, Maloof JN (in prep) Expression quantitative trait mapping in *Brassica rapa* in response to crowding reveals genomic hotspot for shade avoidance gene network clusters.
