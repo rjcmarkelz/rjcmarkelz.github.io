@@ -4,7 +4,7 @@ permalink: /publications/
 title: Publications
 tagline:
 tags:
-modified: 02-26-2019
+modified: 03-03-2020
 comments: false
 image:
   feature: texture-feature-06.jpg
