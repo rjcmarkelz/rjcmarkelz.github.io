@@ -4,7 +4,7 @@ permalink: /CV/
 title: CV
 tagline:
 tags:
-modified: 02-26-2019
+modified: 03-03-2020
 comments: false
 image:
   feature: texture-feature-06.jpg
@@ -41,6 +41,8 @@ Advisor: Dr. Andrew Leakey
 
 
 ### Peer Reviewed Publications
+* Baker RL, Leong W, Brock MT, Rubin MJ, __Markelz RJC__, Welch S,  Maloof JN, Weinig C (__2019__) Integrating transcriptomic network reconstruction and QTL analyses reveals mechanistic connections between genomic architecture and Brassica rapa development. PLoS Genetics 15 (9), e1008367. [paper](https://journals.plos.org/plosgenetics/article?rev=2&id=10.1371/journal.pgen.1008367)
+
 * __Markelz RJC__ <sup>1</sup>,Covington MF <sup>1</sup>, Devisetty UK, Brock M, Weinig C, Maloof JN (__2017__) Using RNA-Seq for genomic scaffold placement, correcting assemblies, and genetic map creation in a common Brassica rapa mapping population. G3. [paper](/pdfs/Markelz_etal_2017.pdf) <sup>1</sup>Equal contribution.
 
 * Bucksch A, Atta-Boateng A, Azihou AF, Battogtokh D, Baumgartner A, Binder BM, Braybrook SA, Chang C, Coneva V, DeWitt TJ, Fletcher AG, Gehan MA, Diaz -Martinez DH, Hong L, Iyer -Pascuzzi AS, Klein LL, Leiboff S, Li M, Lynch JP, Maizel A, Maloof JN, __Markelz RJC__, Martinez CC, Miller LA, Mio W, Palubicki W, Poorter H, Pradal C, Price CA, Puttonen E, Reese JB, Rellán-Álvarez R, Spalding EP, Sparks EE, Topp CN, Williams JH and Chitwood DH (__2017__) Morphological plant modeling: unleashing geometric and topological potential within the plant sciences. Frontiers in Plant Science. 8:900. doi: 10.3389/fpls.2017.00900 [paper](/pdfs/Bucksch_etal_2017.pdf)
@@ -67,12 +69,10 @@ Advisor: Dr. Andrew Leakey
 
 *	Leakey ADB, Ainsworth EA, Bernard SM, __Markelz RJC__, Ort DR, Placella S, Rogers A, Smith MD, Sudderth EA, Weston DJ, Wullschleger SD, Yuan S (__2009__) Gene expression profiling – opening the black box of plant ecosystem responses to global change. Global Change Biology. 15:1201-1213. [paper](/pdfs/Leakey_etal_2009.pdf)
 
+
 ### In-prep
 
 * __Markelz RJC__, Devisetty UK, Covington MF, Maloof JN (in prep) Expression quantitative trait mapping in *Brassica rapa* in response to crowding reveals genomic hotspot for shade avoidance gene network clusters.
-* __Markelz RJC__, Baker RL, An N, Freund D, Devisetty UK, Covington MF, Brock M, Hegeman A, Welch S, Weinig C, Maloof JN (in prep) Systems genetics in *Brassica rapa* reveals genotype to phenotype connections from high-throughput phenotyping data.
-
-
 
 ### Invited Talks
 * Full Stack Biology: Moving freely between biological layers with databases, statistics, and network modeling (__2017__) Phenome 2017. Tucson, AZ.

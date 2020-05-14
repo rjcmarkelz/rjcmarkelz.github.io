@@ -2,15 +2,15 @@
 layout: page
 permalink: /science_outreach/
 title: Science Outreach
-tagline: 
-tags: 
-modified: 05-22-2017
+tagline:
+tags:
+modified: 03-03-2020
 comments: false
 image:
   feature: texture-feature-06.jpg
 ---
 ## Plants iView High-Throughput Phenotyping, Raspberry Pi, Computer Vision
-A new module for Plants iView emphasizing quantitative biology and experimental design for 7th graders. Students set up Raspberry Pi Camera rigs to take time-lapse photos of Arabidopsis plants growing in control or drought conditions. Learning the basics of computer vision and plotting students were able to interpret the plant growth data to see if their hypotheses were supported. It was great working with [Jennifer Quebedeaux](http://lab.igb.illinois.edu/leakey/content/jennifer-quebedeaux) on this module.
+A new module for Plants iView emphasizing quantitative biology and experimental design for 7th graders. Students set up Raspberry Pi Camera rigs to take time-lapse photos of Arabidopsis plants growing in control or drought conditions. Learning the basics of computer vision and plotting students were able to interpret the plant growth data to see if their hypotheses were supported. It was great working with Jennifer Quebedeaux on this module.
 
 <figure>
 	<img src="/images/plants-i-view.png">
@@ -26,7 +26,7 @@ Vegetative Mass Media hackathon project for human interaction with plant growth 
 *    John Clark
 *    [JP Goguen](http://www.bonesjugs.com)
 
-{% include _vimeoPlayer.html id="150433551" %} 
+{% include _vimeoPlayer.html id="150433551" %}
 
 
 
@@ -47,7 +47,7 @@ I led a group of Illinois Plant Biology graduate students in creating middle sch
 
 
 ## Art of Science 2.0
-I worked with a visual artist to modify and display some confocal images I had taken as part of a PhD project. They were displayed at [Indi-go gallery](http://www.indi-go-art.com/) before traveling to a few spots around Illinois. The image I am standing next to is on display in the [Beckman Institute's Center for Nutrition, Learning, and Memory](http://www.cnlm.illinois.edu/). Captions are included for a pop-sci audience. 
+I worked with a visual artist to modify and display some confocal images I had taken as part of a PhD project. They were displayed at [Indi-go gallery](http://www.indi-go-art.com/) before traveling to a few spots around Illinois. The image I am standing next to is on display in the [Beckman Institute's Center for Nutrition, Learning, and Memory](http://www.cnlm.illinois.edu/). Captions are included for a pop-sci audience.
 
 ##### Arabidopsis thaliana live mitochondria and chloroplasts- Spinning disk confocal and Imaris 3D visualization
 <figure>
@@ -64,10 +64,10 @@ I worked with a visual artist to modify and display some confocal images I had t
 
 
 ## National Pollinator Week
-For 2010 and 2011, I co-organized this community event with a fellow graduate student [Michelle Duennes](https://maduennes.wordpress.com/), A.K.A the __Polly Nator__! For the month leading up to National Pollinator Week Michelle and I worked a booth at the Urbana Farmers Market discussing the importance of pollinators for food production. 
+For 2010 and 2011, I co-organized this community event with a fellow graduate student [Michelle Duennes](https://maduennes.wordpress.com/), A.K.A the __Polly Nator__! For the month leading up to National Pollinator Week Michelle and I worked a booth at the Urbana Farmers Market discussing the importance of pollinators for food production.
 <figure>
 	<img src="/images/Pollinator_week.jpg">
-	<figcaption>Showing off my bumble bee tattoo. Mural by Glen C. Davies. 
+	<figcaption>Showing off my bumble bee tattoo. Mural by Glen C. Davies.
 	</figcaption>
 </figure>
 
@@ -79,13 +79,3 @@ At the end of National Pollinator Week we hosted all day events that included:
 *    Nurturing native bee workshop
 *    Native bee identification workshop
 *    Live concert by [Duke of Uke and His Novelty Orchestra](https://www.facebook.com/dukeofukemusic)
-
-
-
-
-
-
-
-
-
-
