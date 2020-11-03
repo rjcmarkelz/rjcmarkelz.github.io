@@ -1,0 +1,90 @@
+I"�<h1 id="motivation">Motivation</h1>
+<p>This quick post is an example of my scientific and collaboration work flow using the free features of <a href="https://trello.com/">Trello</a>. I have tried many different ways of organizing ideas and implementing <a href="https://en.wikipedia.org/wiki/Getting_Things_Done">GTD</a>. Email is <strong>NOT</strong> a good way to organize projects, especially long term ones. Elaborate tag systems can help, but I found that it is more hassle than it is worth when there are other tools available.  For a while I used <a href="http://www.thesecretweapon.org/">The Secret Weapon</a>. Even if you do not use TSW system you should still take a look at these videos to get into that mindset. However, I was spending a lot of time sending emails to people instead of creating new things. Trello is a much better option because it adds a great collaboration component along with a visual way to organize projects. It is browser based and I recommend that you use Chrome because it has some nice Add-ons. Here is a rapid introduction to my work flow with ideas taken from GTD and TSW.</p>
+
+<figure>
+    <img src="/images/1_trello_board.jpg" />&lt;/a&gt;
+</figure>
+<p><strong>FIGURE 1</strong> Trello data has a hierarchy going Organizations –&gt; Boards –&gt; Lists –&gt; Cards. Figure 1 is looking at a board I made for this tutorial.</p>
+
+<ol>
+  <li>Here is where all the boards you are associated with are located.</li>
+  <li>Search board for specific items or data.</li>
+  <li>Open-source Trello time tracking app <a href="http://www.plusfortrello.com/p/about.html">Plus</a></li>
+  <li>Alerts. Will turn red when someone messages you or there is a change is made to a project you are “watching”. More on watching later.</li>
+  <li>Boards are organized into Lists.</li>
+  <li>Individual Cards are attached to Lists and can be moved around between Lists.</li>
+  <li>Cards can have many things associated with them including due dates, people working on them, attachments etc. More on this in Figure 2.</li>
+  <li>My general work flow is to have Lists consisting of GOALS, TO DO, DOING, DONE, and ONGOING. Cards move from right to left for each day. If it is a one off task then it gets moved to DONE and eventually archived. If it is part of a larger project then it gets moved to ONGOING when completed because the card might be used again for the same project. Cards only go into DOING if you actively working on them. This helps me focus and use the time tracking for this task. It is also a good time to block incoming email and other distractions so you can single-task.</li>
+</ol>
+
+<figure>
+    <img src="/images/2_back_of_card.jpg" />&lt;/a&gt;
+</figure>
+<p><strong>FIGURE 2</strong> When you click on a card it flips it over for more details on the “back” of the card.</p>
+
+<ol>
+  <li>Members associated with the card. Excellent for collaboration and  responsibility for to-do items on the card.</li>
+  <li>Color labels to help visually orient you in boards with many cards.</li>
+  <li>Due dates. These can sink with google calender.</li>
+  <li>Card description. Usually I keep this sparse.</li>
+  <li>Checklists. Shows progress for each item. Cards can have multiple checklists.</li>
+  <li>Plus time tracking for each card. Click this to start timer working on this card.</li>
+  <li>Comments. Update progress <em>post</em> working on the tasks associated with this card. I generally include what I did and what should be done the next hour of work on this project. This helps when picking the project back up after a while. Attach items (.csv, images, papers, etc.) to the card using your hard drive, Dropbox, Google Drive, or from a weblink. Integrates youtube videos for example.</li>
+  <li>Referring to cards within boards with the link to the card. Also useful is an email address for each card. Attach that address when dealing with email and it will forward to the card.</li>
+  <li>Comments are great for communicating because you can tag people by their user name.</li>
+  <li>All the items on this card are tracked. Not only comments, but also movements between lists.</li>
+</ol>
+
+<figure>
+    <img src="/images/3_trello_menu.jpg" />&lt;/a&gt;
+</figure>
+<p><strong>FIGURE 3</strong></p>
+
+<ol>
+  <li>Click on the menu bar where you will see a history of the entire board along with some options.</li>
+  <li>Add members to the board.</li>
+  <li>You can filter the cards you see by their color tag. This helps if it gets too crazy on a board. This is where you add the calender integration and card aging power ups.</li>
+</ol>
+
+<figure>
+    <img src="/images/4_personal_projects.jpg" />&lt;/a&gt;
+</figure>
+<p><strong>FIGURE 4</strong> Here is a reduced view of my personal project board.</p>
+
+<ol>
+  <li>Plus time tracking. Click here for time spent on each board, reports, and all these other awesome features of how you spend your time.</li>
+  <li>View the board as a calender with all the due dates displayed.</li>
+  <li>Timing is only on for current task: Trello Tutorial on my Website card.</li>
+  <li>Card aging. A nice visual way to see what projects you have not touched for a while. This helps when reviewing goals and prioritizing the week.</li>
+</ol>
+
+<figure>
+    <img src="/images/5_lab_notebooks.jpg" />&lt;/a&gt;
+</figure>
+<p><strong>FIGURE 5</strong> This is what a collaborative board looks like. This is my undergrad’s lab notebooks and is organized a little differently than my personal work flow. Digital is nice because you can search the content. At the end of the quarter paper notebooks are scanned and attached to the notebook cards. This is where Trello really shines because it is flexible in communication and what can be associated with each card. For example, I take pictures of ideas in notebooks and white boards to post to Trello with some key words that make these ideas easily indexed.</p>
+
+<ol>
+  <li>Individual student lab notebooks.</li>
+  <li>Collaborative learning projects we are working on.</li>
+  <li>Announcements for goals, expectations, etc.</li>
+  <li>Resources. Comes in handy when new undergrad joins to get them up to speed quickly.</li>
+  <li>Grants and longer term goals.</li>
+</ol>
+
+<h3 id="backups">Backups</h3>
+<p>I backup my trello data once a week into a private repository using this <a href="https://github.com/mattab/trello-backup">script</a></p>
+
+<h3 id="file-sharing">File Sharing</h3>
+<p>We have joint Box accounts through our university for file sharing. No need to attach huge items to cards. Just link them to shared storage. These shared folders are also where all the boards are backed up and version controlled.</p>
+
+<h3 id="ios-support">iOS Support</h3>
+<p>Trello has an iOS App that I use to check up on things, send small messages, and add notes on the go.</p>
+
+<h3 id="december-3-2015-update">December 3, 2015 Update</h3>
+<p>You can also integrate Trello with <a href="https://slack.com/">Slack</a>. Slack allows easy (free) access to github repositories. Currently you have to pay for that using Trello.</p>
+
+<p><a href="http://mfcovington.github.io/">Mike Covington</a> Pointed me to another Chrome plug-in, <a href="http://elegantt.com/trello/">Elegantt</a>, for nice visual summaries of project time-lines, overviews, and 100 foot views of projects.</p>
+
+<p>When researching slack integration I came across <a href="http://wpcurve.com/trello-for-project-management/">this post</a> for managing REALLY large projects using Trello. It describes many of the same things above but for a much larger organization. Worth a read.</p>
+
+:ET

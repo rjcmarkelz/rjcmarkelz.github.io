@@ -4,16 +4,15 @@ permalink: /CV/
 title: CV
 tagline:
 tags:
-modified: 03-03-2020
+modified: 11-03-2020
 comments: false
 image:
   feature: texture-feature-06.jpg
 ---
 
-### Current Affiliations
-Co-Founder and VP of Genomics [Rev Genomics](https://www.revgenomics.com/)
-
 ### Previous Affiliations
+* Co-Founder and VP of Genomics [Rev Genomics](https://www.revgenomics.com/)
+
 *   NSF Postdoctoral Fellow - [UC Davis Department of Plant Biology](http://www-plb.ucdavis.edu/) __2014-17__
 *   [UC Davis Data Science Initiative](http://datascience.ucdavis.edu/) __2016-17__
 
