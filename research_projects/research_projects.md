@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /research_projects/research_projects.md
+permalink: /research_projects/
 title: Research Projects
 tagline:
 tags:
