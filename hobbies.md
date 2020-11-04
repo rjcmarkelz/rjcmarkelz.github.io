@@ -2,8 +2,8 @@
 layout: page
 permalink: /hobbies/
 title: Hobbies
-tagline: 
-tags: 
+tagline:
+tags:
 modified: 07-01-2014
 comments: false
 image:
