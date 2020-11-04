@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Postdoc Projects"
+title: "Postdoctoral Research Projects"
 description: ""
 tags: [NSF, Postdoc, research, Brassica, Systems, Genetics]
 comments:
@@ -10,7 +10,6 @@ image:
   creditlink:
 ---
 
-# Postdoctoral Research Projects
 ## Physiological Systems Biology of Competition in *Brassica rapa*
 
 <figure>

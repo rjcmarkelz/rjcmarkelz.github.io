@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Graduate Projects"
+title: "PhD Projects"
 description: ""
 tags: [NSF, graduate, research, climate change, carbon, nitrogen, metabolism]
 comments:
