@@ -9,6 +9,8 @@ comments: false
 image:
   feature: texture-feature-06.jpg
 ---
+[Google Scholar Profile](https://scholar.google.com/citations?user=vpGpo7UAAAAJ&hl=en)
+
 ### Peer Reviewed Publications
 * Baker RL, Leong W, Brock MT, Rubin MJ, __Markelz RJC__, Welch S,  Maloof JN, Weinig C (__2019__) Integrating transcriptomic network reconstruction and QTL analyses reveals mechanistic connections between genomic architecture and Brassica rapa development. PLoS Genetics 15 (9), e1008367. [paper](https://journals.plos.org/plosgenetics/article?rev=2&id=10.1371/journal.pgen.1008367)
 
