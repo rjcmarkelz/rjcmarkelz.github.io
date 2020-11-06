@@ -13,7 +13,7 @@ image:
 ### Previous Affiliations
 * Co-Founder and VP of Genomics [Rev Genomics](https://www.revgenomics.com/) __2016-20__
 *   NSF Postdoctoral Fellow - [UC Davis Department of Plant Biology](http://www-plb.ucdavis.edu/) __2014-17__
-*   [UC Davis Data Science Initiative](http://datascience.ucdavis.edu/) __2016-17__
+*   [UC Davis Data Science Initiative](https://datalab.ucdavis.edu/) __2016-17__
 
 ### Education
 *	Ph.D. Plant Biology, University of Illinois at Urbana-Champaign	- __2012__
