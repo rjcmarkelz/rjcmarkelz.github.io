@@ -18,7 +18,7 @@ Dr. Sharon Gray was a bright human being with a passion for science and mentorin
 
 
 ## Open Cannabis SNP Map Dataset
-As part of my work at Rev Genomics, I analyzed and generated a dataset of 23500+ SNP and 2200+ InDel molecular markers from 1358 cultivars of Cannabis to aid in open-source breeding projects. The project contains data and tutorial on how to view and use the data using open-source tools. The data and tutorial are licensed under [Creative Commons Attributions License 4.0](https://creativecommons.org/licenses/by/4.0/legalcode) and can be downloaded directly [here (500MB)](http://future-cannabis.s3.amazonaws.com/downloads/RevGenomicsOpenCannabisSNPData_v1_1_1.zip). An accompaning article was published on the Future Cannabis Project [Blog](http://futurecannabisproject.org/2019/09/rev-genomics-snp-map-analysis-open-cannabis-project-data-phylos-galaxy/).
+As part of my work at Rev Genomics, I analyzed and generated a dataset of 23500+ SNP and 2200+ InDel molecular markers from 1358 cultivars of Cannabis to aid in open-source breeding projects. The project contains data and tutorial on how to view and use the data using open-source tools. The data and tutorial are licensed under [Creative Commons Attributions License 4.0](https://creativecommons.org/licenses/by/4.0/legalcode) and can be downloaded directly [here (500MB)](http://future-cannabis.s3.amazonaws.com/downloads/RevGenomicsOpenCannabisSNPData_v1_1_1.zip). An accompanying article was published on the Future Cannabis Project [Blog](http://futurecannabisproject.org/2019/09/rev-genomics-snp-map-analysis-open-cannabis-project-data-phylos-galaxy/).
 
 
 

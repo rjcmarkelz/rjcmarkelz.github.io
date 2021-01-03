@@ -45,7 +45,7 @@ Advisor: Dr. Andrew Leakey
 
 * Bucksch A, Atta-Boateng A, Azihou AF, Battogtokh D, Baumgartner A, Binder BM, Braybrook SA, Chang C, Coneva V, DeWitt TJ, Fletcher AG, Gehan MA, Diaz -Martinez DH, Hong L, Iyer -Pascuzzi AS, Klein LL, Leiboff S, Li M, Lynch JP, Maizel A, Maloof JN, __Markelz RJC__, Martinez CC, Miller LA, Mio W, Palubicki W, Poorter H, Pradal C, Price CA, Puttonen E, Reese JB, Rellán-Álvarez R, Spalding EP, Sparks EE, Topp CN, Williams JH and Chitwood DH (__2017__) Morphological plant modeling: unleashing geometric and topological potential within the plant sciences. Frontiers in Plant Science. 8:900. doi: 10.3389/fpls.2017.00900 [paper](/pdfs/Bucksch_etal_2017.pdf)
 
-* An N, Welch SM, __Markelz RJC__, Baker RL, Palmer CM, Ta J, Maloof JN, Weinig C (__2017__) Using photogrammetry and plant modeling techniques to quantify 2D and 3D rossette area for time-series high-throughput phenotyping. 135: 222-232 [paper](/pdfs/An_etal_2017.pdf)
+* An N, Welch SM, __Markelz RJC__, Baker RL, Palmer CM, Ta J, Maloof JN, Weinig C (__2017__) Using photogrammetry and plant modeling techniques to quantify 2D and 3D rossette area for time-series high-throughput phenotyping. Computers and Electronics in Agriculture. 135: 222-232 [paper](/pdfs/An_etal_2017.pdf)
 
 * An N, Palmer CM, Baker RL, __Markelz RJC__, Ta JT, Covington MF, Maloof JN, Welch SM, Weinig C (__2016__) Plant High-Throughput Phenotyping Using Photogrammetry and imaging Techniques to Measure Leaf Length and Rosette Area. Computers and Electronics in Agriculture. 127:376-394 [paper](/pdfs/An_etal_2016.pdf)
 
