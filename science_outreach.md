@@ -10,7 +10,7 @@ image:
   feature: texture-feature-06.jpg
 ---
 
-## Sharon B. Gray Memorial Foundation
+## Dr. Sharon B. Gray Memorial Foundation
 "I feel that when the human race acquired the technology and evolved the intelligence necessary to build an industrial society, it also acquired the moral obligation to understand and monitor its impact on the rest of the world." -Dr. Sharon B. Gray
 
 Dr. Sharon Gray was a bright human being with a passion for science and mentoring women. This foundation has set up endowments for financially supporting women in science at UC Davis, University of Illinois Urbana-Champaign, American Society of Plant Biology, and the Ethiopian Agricultural Research Center (EIAR). Read more about the projects [here](https://sharongrayfoundation.org/projects).
