@@ -111,6 +111,7 @@ Advisor: Dr. Andrew Leakey
 
 
 ### Teaching
+*  Guest Lecturer- Landscape Architecture Graduate Design Studio 438- University of Illinois - Experimental Design Thinking __2021__
 *  Guest Lecturer- Emerging Technologies- Kent School of Law - Biotech approaches to improving crops for a changing world __2020__
 *   Co-instructor- PBI200C- Plant Biology Graduate Group Core, [Plant Primary Productivity: Environmental Impacts on C-Fixation](/pdfs/Markelz-PBL200C-2016-measurements.pdf). Mathematical model based instruction using [photosynthesis simulations](https://rjcmarkelz.shinyapps.io/shiny_photo/). __2016__
 *   Guest Instructor- BIS180L- Undergraduate Bioinformatics Lab. Genetic Networks 1: [Clustering](http://jnmaloof.github.io/BIS180L_web/labs/), Genetic Networks 2: [Co-expression](http://jnmaloof.github.io/BIS180L_web/labs/),  __2015__
