@@ -11,7 +11,7 @@ image:
 ---
 
 ### Current Affiliation
-* Accenture Global Environmental Change Fellow- Berkeley Institute for Data Science (BIDS) __2021-present__
+* Accenture Global Environmental Change Fellow- [Berkeley Institute for Data Science (BIDS)](https://bids.berkeley.edu/) __2021-present__
 
 ### Previous Affiliations
 * Co-Founder and VP of Genomics [Rev Genomics](https://www.revgenomics.com/) __2016-20__
