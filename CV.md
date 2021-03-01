@@ -4,11 +4,14 @@ permalink: /CV/
 title: CV
 tagline:
 tags:
-modified: 11-03-2020
+modified: 03-01-2021
 comments: false
 image:
   feature: texture-feature-06.jpg
 ---
+
+### Current Affiliation
+* Accenture Global Environmental Change Fellow- Berkeley Institute for Data Science (BIDS) __2021-present__
 
 ### Previous Affiliations
 * Co-Founder and VP of Genomics [Rev Genomics](https://www.revgenomics.com/) __2016-20__
