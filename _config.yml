@@ -37,8 +37,6 @@ bing_verify:
 links:
   - title: About
     url: about
-  - title: CV
-    url: CV
   - title: Research
     url: research_projects/
   #- title: Graduate Projects
@@ -49,6 +47,8 @@ links:
     url: teaching
   - title: Outreach
     url: science_outreach
+  - title: CV
+    url: CV
   # - title: Hobbies
     # url: /Hobbies/
   - title: Blog

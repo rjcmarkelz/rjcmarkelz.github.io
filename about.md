@@ -1,10 +1,10 @@
 ---
 layout: page
 permalink: /about/
-title: Professional learner interested in plants, computers, and data science.
+title: Professional learner interested in plants, computers, data science and illustration.
 tagline:
 tags:
-modified: 01-02-2021
+modified: 01-03-2021
 comments: false
 image:
   feature: texture-feature-06.jpg
