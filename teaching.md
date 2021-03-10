@@ -1,10 +1,10 @@
 ---
 layout: page
 permalink: /teaching/
-title: Teaching and Mentoring
+title: Teaching Statement
 tagline:
 tags:
-modified: 12-04-2020
+modified: 03-10-2021
 comments: false
 image:
   feature: texture-feature-06.jpg
