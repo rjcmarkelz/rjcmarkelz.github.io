@@ -1,0 +1,99 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/2023-02-23-BIDS-welcome.html",
+      "/posts/2023-02-15-Data-Science-Communications.html",
+      "/posts/2023-02-01-Obsidian3.html",
+      "/posts/2023-01-07-trinity-alps-trail-run/index.html",
+      "/posts/2023-01-01-mount-eddy-trail-run/index.html",
+      "/posts/2022-12-15-baja-species-3/index.html",
+      "/posts/2022-12-07-baja-species-2/index.html",
+      "/posts/2022-12-01-baja-species/index.html",
+      "/posts/2022-11-01-trailrunzine/index.html",
+      "/posts/2022-10-25-ADSA-Sketchnote.html",
+      "/posts/2022-10-15-pyrodiversityklamathnatgeo/index.html",
+      "/posts/2022-10-01-slacmethodforcomics/index.html",
+      "/posts/2022-09-30-DSxD-Sketchnote.html",
+      "/posts/2022-09-15-shastasketchersnaturejournal/index.html",
+      "/posts/2022-09-01-shastasketchersdrinkanddraw/index.html",
+      "/posts/2022-08-15-trailrunningtrainingdata/index.html",
+      "/posts/2022-08-01-drseussplant/index.html",
+      "/posts/2022-07-21-artventuregear/index.html",
+      "/posts/2022-07-15-ucreservefires/index.html",
+      "/posts/2022-07-01-headwaters/index.html",
+      "/posts/2022-06-15-cobralily/index.html",
+      "/posts/2022-06-01-edward-stuhl-wildflowers/index.html",
+      "/posts/2022-05-15-bayareainsects/index.html",
+      "/posts/2022-05-01-jefferypinetrailrun/index.html",
+      "/posts/2022-04-15-sugar-pine-trail-run/index.html",
+      "/posts/2022-04-01-foxtailpinetrailrun/index.html",
+      "/posts/2022-03-15-pacificyewtrailrun/index.html",
+      "/posts/2022-03-01-trout-data/index.html",
+      "/posts/2022-02-15-ski-touring-data/index.html",
+      "/posts/2022-02-01-uc-reserve-data-1/index.html",
+      "/posts/2022-01-20-rmarkdown-comic-script.html",
+      "/posts/2022-01-15-scraping-weather-data/index.html",
+      "/posts/2022-01-01-Obsidian-Bibliography.html",
+      "/posts/2021-12-15-Obsidian-Intro.html",
+      "/posts/2021-08-25-ComicBookColoring.html",
+      "/posts/2021-05-15-mlk-cycling-nature/index.html",
+      "/posts/2021-04-26-gbif-miracle-mile-species/index.html",
+      "/posts/2021-03-15-tidy-data-intro.html",
+      "/posts/2015-11-18-Trello.html",
+      "/posts/2015-01-01-ArtScienceHack.html"
+    ]
+  },
+  {
+    "listing": "/posts.html",
+    "items": [
+      "/posts/2021-12-15-Obsidian-Intro.html",
+      "/posts/2021-04-26-gbif-miracle-mile-species/index.html",
+      "/posts/post-with-code/index.html",
+      "/posts/welcome/index.html"
+    ]
+  },
+  {
+    "listing": "/science.html",
+    "items": [
+      "/science/biodiversity_fire.html",
+      "/science/science_communications.html",
+      "/science/science_outreach.html",
+      "/science/rev_genomics.html",
+      "/science/postdoc_projects.html",
+      "/science/engineering.html",
+      "/science/teaching.html",
+      "/science/PhD_projects.html",
+      "/science/undergraduate_projects.html"
+    ]
+  },
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/posts/post-with-code/index.html",
+      "/posts/welcome/index.html",
+      "/posts/2021-12-15-Obsidian-Intro.html",
+      "/posts/2021-04-26-gbif-miracle-mile-species/index.html"
+    ]
+  },
+  {
+    "listing": "/art.html",
+    "items": [
+      "/art/design.html",
+      "/art/illustration.html",
+      "/art/sketchnotes.html"
+    ]
+  },
+  {
+    "listing": "/adventure.html",
+    "items": [
+      "/adventure/bike.html",
+      "/adventure/fish.html",
+      "/adventure/hike.html",
+      "/adventure/nature-journal.html",
+      "/adventure/run.html",
+      "/adventure/ski.html",
+      "/adventure/van.html"
+    ]
+  }
+]
