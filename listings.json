@@ -97,5 +97,17 @@
       "/adventure/ski.html",
       "/adventure/van.html"
     ]
+  },
+  {
+    "listing": "/outreach.html",
+    "items": [
+      "/outreach/sbg-fund.html",
+      "/outreach/artsciencehack.html",
+      "/outreach/international-impact.html",
+      "/outreach/national-pollinator-week.html",
+      "/outreach/plants-iview.html",
+      "/outreach/artofscience.html",
+      "/outreach/threatened-species.html"
+    ]
   }
 ]
