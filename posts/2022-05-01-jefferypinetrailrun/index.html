@@ -250,7 +250,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<p>I am continueing on my quest of checking off all the conifer species that occur in the <a href="../../posts/gbif-miracle-mile-species/">Miracle Mile</a>. I recently found some <a href="https://en.wikipedia.org/wiki/Pinus_jeffreyi">Jeffrey’s Pine</a> (<em>Pinus jeffreyi</em>) on a trail run while on vacation in the San Bernadino mountains East of Los Angeles. This is in an area where there is also <a href="https://en.wikipedia.org/wiki/Pinus_ponderosa">Ponderosa Pine</a> (<em>Pinus Ponderosa</em>). Sometimes the species are confused with one another and can even form hybrids making identification difficult. In general the Ponderosa’s are larger trees, but have smaller cones with the pointy end (umbos) of the individual seeds facing outward. The Jeffery’s pine has larger cones with the umbos facing down or inward making them easier to handle without poking yourself. The following are some quick data queries, manipulation and plotting.</p>
+<p>I am continuing on my quest of checking off all the conifer species that occur in the <a href="../../posts/gbif-miracle-mile-species/">Miracle Mile</a>. I recently found some <a href="https://en.wikipedia.org/wiki/Pinus_jeffreyi">Jeffrey’s Pine</a> (<em>Pinus jeffreyi</em>) on a trail run while on vacation in the San Bernadino mountains East of Los Angeles. This is in an area where there is also <a href="https://en.wikipedia.org/wiki/Pinus_ponderosa">Ponderosa Pine</a> (<em>Pinus Ponderosa</em>). Sometimes the species are confused with one another and can even form hybrids making identification difficult. In general the Ponderosa’s are larger trees, but have smaller cones with the pointy end (umbos) of the individual seeds facing outward. The Jeffery’s pine has larger cones with the umbos facing down or inward making them easier to handle without poking yourself. The following are some quick data queries, manipulation and plotting.</p>
 <p>Load the libraries.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rinat)</span>
@@ -306,7 +306,7 @@ $ tag_list                         &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, N
 $ common_name                      &lt;chr&gt; "Jeffrey pine", "Jeffrey pine", "Jeff…
 $ url                              &lt;chr&gt; "https://www.inaturalist.org/observat…
 $ image_url                        &lt;chr&gt; "https://inaturalist-open-data.s3.ama…
-$ user_login                       &lt;chr&gt; "ekoberle", "happyg", "orionsmcc", "m…
+$ user_login                       &lt;chr&gt; "ekoberle", "happyg", "orionsmcc", "s…
 $ id                               &lt;int&gt; 148162933, 145894058, 143681542, 1284…
 $ species_guess                    &lt;chr&gt; "Jeffrey pine", "", "Jeffrey pine", "…
 $ iconic_taxon_name                &lt;chr&gt; "Plantae", "Plantae", "Plantae", "Pla…
@@ -406,40 +406,40 @@ $ captive_cultivated               &lt;chr&gt; "false", "false", "false", "false
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>PondPineNor_iNat <span class="ot">&lt;-</span> <span class="fu">get_inat_obs</span>(<span class="at">query =</span> <span class="st">"Pinus ponderosa"</span>, <span class="at">bounds =</span> bounds2, <span class="at">maxresults =</span> <span class="dv">100</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>PondPineNor_iNat<span class="sc">$</span>user_login <span class="co"># Look for rjcmarkelz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1] "carexobnupta"     "carexobnupta"     "jim22lawrence"   
-  [4] "dgrimmphd"        "dgrimmphd"        "john_virzi_hort" 
-  [7] "danielkennedy"    "ekgrijalva"       "danielkennedy"   
- [10] "brendanswift"     "greenfieldlouis"  "luca_hickey"     
- [13] "hkibak"           "gentilcore"       "gentilcore"      
- [16] "tallianna"        "chris_earle"      "liuelliot2187"   
- [19] "brennanpopovic"   "pikabombadier"    "frankdaluddung"  
- [22] "dgrimmphd"        "dgrimmphd"        "dgrimmphd"       
- [25] "drew_meyer"       "gcwarbler"        "k-bot"           
- [28] "luca_hickey"      "luca_hickey"      "sirhikesalot"    
- [31] "drew_meyer"       "justin426"        "luca_hickey"     
- [34] "luca_hickey"      "luca_hickey"      "luca_hickey"     
- [37] "samuel_monteon"   "lydia_365"        "drew_meyer"      
- [40] "hchrish200"       "shaunmichael"     "shaunmichael"    
- [43] "shaunmichael"     "megan1545"        "tyannasb"        
- [46] "mrsjburgin"       "pinus_taeda"      "samuel_monteon"  
- [49] "pronghornranch67" "drew_meyer"       "drew_meyer"      
- [52] "chilipossum"      "sunnyjo"          "chilipossum"     
- [55] "chilipossum"      "gentilcore"       "tadamcochran"    
- [58] "gentilcore"       "mirri360"         "fish_narc"       
- [61] "maggiebrownie3"   "nelruzam"         "geodani"         
- [64] "linuslancaster"   "justinaceae"      "aestas"          
- [67] "aestas"           "aestas"           "pgeorgakakos"    
- [70] "susanfawcett"     "danspada"         "kathawk"         
- [73] "lorri-gong"       "panadora"         "gilbertj"        
- [76] "nickstein"        "gnomewardbound"   "gentilcore"      
- [79] "wildgifts"        "gentilcore"       "gentilcore"      
- [82] "gentilcore"       "jackjohnsonn"     "avocat"          
- [85] "brak"             "harry_walters"    "elena936"        
- [88] "drew_meyer"       "drew_meyer"       "jkell12"         
- [91] "drew_meyer"       "valsa"            "luca_hickey"     
- [94] "luca_hickey"      "luca_hickey"      "luca_hickey"     
- [97] "luca_hickey"      "luca_hickey"      "luca_hickey"     
-[100] "luca_hickey"     </code></pre>
+<pre><code>  [1] "michael_long"     "michael_long"     "michael_long"    
+  [4] "kristay58"        "monicole"         "kristendimas"    
+  [7] "loantaka"         "cmccarron"        "matthewchovanec" 
+ [10] "chief_shiitake"   "symbiiotica"      "cmccarron"       
+ [13] "luca_hickey"      "luca_hickey"      "mike-potts"      
+ [16] "paulette99"       "paulette99"       "mugwortdr"       
+ [19] "jessicadav"       "cmccarron"        "kristymorrow"    
+ [22] "emily_jackson"    "emily_jackson"    "linda-s-carter"  
+ [25] "alleneli"         "avidhiker"        "carexobnupta"    
+ [28] "connorcochrane"   "luca_hickey"      "northgondwana"   
+ [31] "alleneli"         "morbidius"        "steph_mo"        
+ [34] "kristymorrow"     "ukiahhaiku"       "grmidnight"      
+ [37] "ecline"           "damontighe"       "radamisprime"    
+ [40] "morbidius"        "shuckabone"       "amkatros"        
+ [43] "roxannereiners"   "max_forster"      "alan_rockefeller"
+ [46] "alan_rockefeller" "alan_rockefeller" "alleneli"        
+ [49] "jamesjarrett00"   "jamesjarrett00"   "madroneone"      
+ [52] "luca_hickey"      "luca_hickey"      "steph_mo"        
+ [55] "steph_mo"         "brane_dood"       "meadowlarkmerlin"
+ [58] "biologystuff"     "sedgequeen"       "madroneone"      
+ [61] "michaelkauffmann" "cmccarron"        "carexobnupta"    
+ [64] "carexobnupta"     "jim22lawrence"    "dgrimmphd"       
+ [67] "dgrimmphd"        "john_virzi_hort"  "danielkennedy"   
+ [70] "ekgrijalva"       "danielkennedy"    "brendanswift"    
+ [73] "greenfieldlouis"  "luca_hickey"      "hkibak"          
+ [76] "gentilcore"       "gentilcore"       "tallianna"       
+ [79] "chris_earle"      "liuelliot2187"    "brennanpopovic"  
+ [82] "pikabombadier"    "frankdaluddung"   "dgrimmphd"       
+ [85] "dgrimmphd"        "dgrimmphd"        "drew_meyer"      
+ [88] "gcwarbler"        "k-bot"            "luca_hickey"     
+ [91] "luca_hickey"      "sirhikesalot"     "drew_meyer"      
+ [94] "justin426"        "luca_hickey"      "luca_hickey"     
+ [97] "luca_hickey"      "luca_hickey"      "samuel_monteon"  
+[100] "lydia_365"       </code></pre>
 </div>
 </div>
 <p>Filter and select the image_url so we can compare the size and physical attributes of the cones.</p>
