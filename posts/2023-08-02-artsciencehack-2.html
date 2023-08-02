@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="RJ Cody Markelz">
-<meta name="dcterms.date" content="2015-01-01">
+<meta name="dcterms.date" content="2023-08-02">
 <meta name="description" content="–Design Experiments With Data">
 
-<title>Cody Markelz - Art Science Hackathon v1.0</title>
+<title>Cody Markelz - Art Science Hackathon v2.0</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Art Science Hackathon v1.0</h1>
+      <h1 class="title">Art Science Hackathon v2.0</h1>
                   <div>
         <div class="description">
           –Design Experiments With Data
@@ -151,8 +151,7 @@ ul.task-list li input[type="checkbox"] {
                 <div class="quarto-category">art</div>
                 <div class="quarto-category">data</div>
                 <div class="quarto-category">sculpture</div>
-                <div class="quarto-category">science</div>
-                <div class="quarto-category">explore</div>
+                <div class="quarto-category">xbox kinect</div>
               </div>
                   </div>
   </div>
@@ -170,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">January 1, 2015</p>
+        <p class="date">August 2, 2023</p>
       </div>
     </div>
     
@@ -190,39 +189,22 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="concept" class="level1">
 <h1>Concept</h1>
-<p>I have two really good friends that are both professional designers/artists living in Chicago. Every year over the holiday break we would discuss how fun it would be to do a collaborative project, but never got around to doing one because of our busy schedules. This year we planned a few months in advance to have a hackathon style four day work session between Christmas and New Years. We wanted to move as quickly as possible and make as many ideas happen as possible in our short time frame. We discussed all of the different data sets that I had as part of various research projects and the ones that turned out to be most appealing were the high-throughput plant imaging data sets.</p>
-<p>Read more about the second ArtScienceHack <a href="../posts/2023-08-02-artsciencehack-2.html">here</a>.</p>
+<p>For the second iteration of the ArtScienceHack in 2016, we decided to bring our art, design, science, engineering, and data skills together to work on a single project for 48 hours. We had very minimal exposure to the <a href="https://processing.org/">processing language</a> prior to starting this, but I had experience building things in many other languages. Processing is a good first language to learn for designers and artists so we started there.</p>
+<p>Read more about the first ArtScienceHack <a href="../posts/2015-01-01-ArtScienceHack.html">here</a>.</p>
 </section>
-<section id="crew" class="level1">
-<h1>Crew</h1>
-<p><a href="http://www.john-clark.org/">Johnny Clark</a> is an architect and designer currently working for <a href="http://mozer.com/">Jordan Mozer</a>. The Mozer firm’s was our home base for creativity, industrial grade internet, and organic shape object art inspiration. <a href="http://matthewharlan.com/">Matt Harlan</a> is a freelance designer and screen printing guru. Matt also works on this awesome architecture zine called <a href="http://soiledzine.org/">soiled</a>. And myself.</p>
-<hr>
-<section id="arabidopsis-thaliana-architectural-forms" class="level4">
-<h4 class="anchored" data-anchor-id="arabidopsis-thaliana-architectural-forms"><strong>Arabidopsis thaliana architectural forms</strong></h4>
-<p>I just learned Rhino about four hours earlier so this was a successful visualization of an Arabidopsis growth time series. This is a mosaic of the steps in constructing this city. As part of another project in the lab I have thousands of Arabidopsis timelapse images. I quickly modified some other code for a quick <a href="https://github.com/rjcmarkelz/AT_CV/blob/master/scripts/arabidopsis_hack.py">python script</a> to binerize the plant relative to the background and then quantified plant area in each successive image. The height of the buildings correspond to the difference in rosette size from the previous timepoint. Then I got to really have fun and make a skyline and city in the shape of one of the plant outlines. Moving around the city that I had just made was really trippy especially when doing it from a 6 foot tall person perspective. The upper right is a view from the skydeck of a building. Johnny helped me make the surface transparent to give it a glass coffeetable feel. I think overall this project might help me pass Architecture 101.</p>
-<section id="arabidopsis-city-visualization-using-rosette-growth-data" class="level5">
-<h5 class="anchored" data-anchor-id="arabidopsis-city-visualization-using-rosette-growth-data">Arabidopsis City visualization using rosette growth data:</h5>
-<p><img src="../images/cityscape.jpg" class="img-fluid"></p>
-<hr>
+<section id="goals" class="level1">
+<h1>Goals</h1>
+<p>Rapidly learn the basics of processing and make an interactive model of plant growth that takes human movement as input to the model.</p>
 </section>
-</section>
-<section id="brassica-rapa-architectural-forms" class="level4">
-<h4 class="anchored" data-anchor-id="brassica-rapa-architectural-forms"><strong>Brassica rapa architectural forms</strong></h4>
-<p>For another lab project I am doing some 3D reconstructions of Brassica rapa. I have loads of this kind of data, but thought it would be nice to see what an artist’s perspective might use the data for. First things first, it was much too dense to load into memory so we randomly sampled the point cloud and made some wire frames by nearest neighbor searches. The renderings are simple and elegant. Then Johnny took it to the next level with a Rhino plugin called Grasshopper to produce the metaball renderings and octree representations of the data. A free plugin that might make the cost of Rhino worth it.</p>
-<section id="the-original-3d-data-of-a-brassica-plant" class="level5">
-<h5 class="anchored" data-anchor-id="the-original-3d-data-of-a-brassica-plant">The original 3D data of a brassica plant:</h5>
-<div class="quarto-video ratio ratio-16x9"><iframe src="https://player.vimeo.com/video/108757972" frameborder="0" allow="autoplay; title=" "="" fullscreen;="" picture-in-picture"="" allowfullscreen=""></iframe></div>
-</section>
-<section id="brassica-rapa-sparse-proximity-structure" class="level5">
-<h5 class="anchored" data-anchor-id="brassica-rapa-sparse-proximity-structure">Brassica rapa sparse proximity structure:</h5>
-<p><img src="../images/proximity.jpg" class="img-fluid"></p>
-</section>
-<section id="brassica-rapa-metaball-space-structure" class="level5">
-<h5 class="anchored" data-anchor-id="brassica-rapa-metaball-space-structure">Brassica rapa metaball space structure:</h5>
-<p><img src="../images/METABALL_5.jpg" class="img-fluid"></p>
+<section id="outcomes" class="level1">
+<h1>Outcomes</h1>
+<p>Overall the hackathon was a success. We had an interactive model of plant growth that had a fundamental trade-off function built in. This trade-off is visualized as the root:shoot ratio using hand control through the hacked xbox connect controller.</p>
+<section id="artsciencehack-v-2.0-plant-growth-model-xbox-connect-hack" class="level5">
+<h5 class="anchored" data-anchor-id="artsciencehack-v-2.0-plant-growth-model-xbox-connect-hack"><strong>ArtScienceHack-v-2.0 Plant Growth Model Xbox Connect Hack</strong></h5>
+<div class="quarto-video ratio ratio-16x9"><iframe src="https://player.vimeo.com/video/150433551" frameborder="0" allow="autoplay; title=" "="" fullscreen;="" picture-in-picture"="" allowfullscreen=""></iframe></div>
+<p>Code available <a href="https://github.com/rjcmarkelz/artsciencehack">here</a>.</p>
 
 
-</section>
 </section>
 </section>
 
