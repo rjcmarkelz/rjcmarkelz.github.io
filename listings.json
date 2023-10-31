@@ -2,7 +2,11 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2023-10-01-avalanche-data-animation.html",
       "/posts/2023-09-28-explorer-exercise-4.html",
+      "/posts/2023-09-23-summarizing-weather-data.html",
+      "/posts/2023-09-22-scraping-weather-data.html",
+      "/posts/2023-09-21-scraping-weather-data-setup.html",
       "/posts/2023-09-01-explorer-exercise-3.html",
       "/posts/2023-08-18-Data-Science-Academia-Career.html",
       "/posts/2023-08-11-Adventure-Route-Planning.html",
