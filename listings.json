@@ -79,6 +79,7 @@
   {
     "listing": "/science.html",
     "items": [
+      "/science/avalanche_data_science.html",
       "/science/biodiversity_fire.html",
       "/science/science_communications.html",
       "/science/science_outreach.html",
