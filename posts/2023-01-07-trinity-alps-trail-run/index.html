@@ -215,6 +215,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
                 <div class="quarto-category">trail run</div>
                 <div class="quarto-category">exercise</div>
                 <div class="quarto-category">explore</div>
+                <div class="quarto-category">illustration</div>
               </div>
                   </div>
   </div>
@@ -250,7 +251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<p><img src="https://drive.google.com/uc?id=1_4ONzriUh_-3wHWrXUSRRuouiVTAaU28" alt="Western White Pine Cone Illustration" height="600"> <a href="https://en.wikipedia.org/wiki/Western_white_pine">Western White Pine</a> Cone Illustration</p>
+<p><img src="../../images/westernwhitepinecone-web.png" alt="Western White Pine Cone Illustration" height="600"> <a href="https://en.wikipedia.org/wiki/Western_white_pine">Western White Pine</a> Cone Illustration</p>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>I recently revisited one the conifer species that occur in the <a href="../../posts/2021-04-26-gbif-miracle-mile-species/index.html">Miracle Mile</a>, but by trail running in the Trinity Alps Wilderness area in the Klamath range of Northern California. I found a number of cool species, but one recognizable one was the <a href="https://en.wikipedia.org/wiki/Western_white_pine">Western White Pine</a> (<em>Pinus monticola</em>). <em>Pinus monticola</em> is found in many of the cool trail running spots I frequent. Here is another <a href="../../posts/2022-04-01-foxtailpinetrailrun/index.html">post</a> about another trail run with <em>Pinus monticola</em>.</p>
@@ -318,21 +319,21 @@ Records returned [5]
 Args [hasCoordinate=TRUE, occurrenceStatus=PRESENT, limit=10000, offset=0,
      scientificName=pinus monticola, geometry=POLYGON((-122.91 40.88, -122.87
      40.88, -122.87 40.96, -122.91 40.96, -122.91 40.88))] 
-# A tibble: 5 × 73
-  key     scien…¹ decim…² decim…³ issues datas…⁴ publi…⁵ insta…⁶ publi…⁷ proto…⁸
+# A tibble: 5 × 78
+  key     scien…¹ decim…² decim…³ issues datas…⁴ publi…⁵ insta…⁶ hosti…⁷ publi…⁸
   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
-1 396113… Pinus …    40.9   -123. cdc,c… 50c950… 28eb1a… 997448… US      DWC_AR…
-2 396097… Pinus …    40.9   -123. cdc,c… 50c950… 28eb1a… 997448… US      DWC_AR…
-3 338409… Pinus …    40.9   -123. cdc,c… 50c950… 28eb1a… 997448… US      DWC_AR…
-4 239748… Pinus …    40.9   -123. cdc,c… 50c950… 28eb1a… 997448… US      DWC_AR…
-5 254089… Pinus …    40.9   -123. cdc,c… 50c950… 28eb1a… 997448… US      DWC_AR…
-# … with 63 more variables: lastCrawled &lt;chr&gt;, lastParsed &lt;chr&gt;, crawlId &lt;int&gt;,
-#   hostingOrganizationKey &lt;chr&gt;, basisOfRecord &lt;chr&gt;, occurrenceStatus &lt;chr&gt;,
-#   taxonKey &lt;int&gt;, kingdomKey &lt;int&gt;, phylumKey &lt;int&gt;, classKey &lt;int&gt;,
-#   orderKey &lt;int&gt;, familyKey &lt;int&gt;, genusKey &lt;int&gt;, speciesKey &lt;int&gt;,
-#   acceptedTaxonKey &lt;int&gt;, acceptedScientificName &lt;chr&gt;, kingdom &lt;chr&gt;,
-#   phylum &lt;chr&gt;, order &lt;chr&gt;, family &lt;chr&gt;, genus &lt;chr&gt;, species &lt;chr&gt;,
-#   genericName &lt;chr&gt;, specificEpithet &lt;chr&gt;, taxonRank &lt;chr&gt;, …</code></pre>
+1 396113… Pinus …    40.9   -123. cdc,c… 50c950… 28eb1a… 997448… 28eb1a… US     
+2 396097… Pinus …    40.9   -123. cdc,c… 50c950… 28eb1a… 997448… 28eb1a… US     
+3 338409… Pinus …    40.9   -123. cdc,c… 50c950… 28eb1a… 997448… 28eb1a… US     
+4 239748… Pinus …    40.9   -123. cdc,c… 50c950… 28eb1a… 997448… 28eb1a… US     
+5 254089… Pinus …    40.9   -123. cdc,c… 50c950… 28eb1a… 997448… 28eb1a… US     
+# … with 68 more variables: protocol &lt;chr&gt;, lastCrawled &lt;chr&gt;,
+#   lastParsed &lt;chr&gt;, crawlId &lt;int&gt;, basisOfRecord &lt;chr&gt;,
+#   occurrenceStatus &lt;chr&gt;, taxonKey &lt;int&gt;, kingdomKey &lt;int&gt;, phylumKey &lt;int&gt;,
+#   classKey &lt;int&gt;, orderKey &lt;int&gt;, familyKey &lt;int&gt;, genusKey &lt;int&gt;,
+#   speciesKey &lt;int&gt;, acceptedTaxonKey &lt;int&gt;, acceptedScientificName &lt;chr&gt;,
+#   kingdom &lt;chr&gt;, phylum &lt;chr&gt;, order &lt;chr&gt;, family &lt;chr&gt;, genus &lt;chr&gt;,
+#   species &lt;chr&gt;, genericName &lt;chr&gt;, specificEpithet &lt;chr&gt;, taxonRank &lt;chr&gt;, …</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>whitepine_coords <span class="ot">&lt;-</span> whitepine_data<span class="sc">$</span>data[ , <span class="fu">c</span>(<span class="st">"decimalLongitude"</span>, <span class="st">"decimalLatitude"</span>, <span class="st">"occurrenceStatus"</span>, <span class="st">"coordinateUncertaintyInMeters"</span>,</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"institutionCode"</span>, <span class="st">"references"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -527,7 +528,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">© Copyright 2023 Cody Markelz</div>   
+    <div class="nav-footer-left">© Copyright 2024 Cody Markelz</div>   
   </div>
 </footer>
 
