@@ -1,0 +1,106 @@
+---
+title: Scraping Weather Data 1
+author: RJ Cody Markelz
+description: --Docker Container Set-up
+date: 2023-09-21
+categories: [weather, data, scraping, website, meta-data, research, journalism, data journalism, avalanche, ski touring, back country skiing]
+image: /images/weather-scraping-plot.png
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+This post is the First in a series teaching data journalists how to scrape and visualize website data.  See the other posts in the series [Post 2](/posts/2023-09-22-scraping-weather-data.html), [Post 3](/posts/2023-09-23-summarizing-weather-data.html) and [Post 4](/posts/2023-10-01-avalanche-data-animation.html).
+
+**NOTE:** This is fairly advanced data analysis topic. I will write some more introductory posts when I have more time, but I wanted to share my workflow for any data journalists out there.
+
+### Introduction
+I started collaborating with the [Mount Shasta Avalanche Center](https://www.shastaavalanche.org/#/all) for a long form data journalism project looking at snow and avalanche condition forecasting with the backdrop of climate change. This adds an additional layer of uncertainty into any type of short-term forecast. Forecasters put out daily forecasts that integrate a lot of weather, snowfall, wind speed, direction, terrain, and previous snowfall information along with on the ground observational data collected from snow pits. [Here](https://www.shastaavalanche.org/page/how-read-advisory) is a brief summary of how to read a forecast.
+
+I thought this would be a good opportunity to show how you can collect, clean, and visualize your own data-sets for data journalism projects. I will be scraping the Avalanche Center's public website to assemble an aggregated data-set of my own to ask my own questions. This is a series of posts on the topic using open-source data tools. 
+
+### Docker Containers
+[Docker containers](https://www.docker.com/) are a nice way to add some reproducibility to your data journalism workflow. While a complete introduction to docker containers is outside of the scope of this series, you can think of them as small linux computers that run single programs or data analysis packages to accomplish a specific task. You can network them together so they can talk to one another by sharing data or commands between them. The advantage of this is that once you make a docker container you can always refer back to it like a snapshot of the hardware that ran your analysis code. It will have the software installed on it that you used for an analysis. All of this can be done on a laptop to get things set-up and then transferred to the cloud if you have a large job to run. This allows you to prototype on the laptop and then spin up large cloud computers if necessary. Or you can just continue to work off your laptop. You can also share the images you have made on [Docker Hub](https://hub.docker.com/). 
+
+For this post I will refer to three different machines. Your **HOME** machine (my laptop in this case), a docker container that is running R and R Selenium (**R CONTAINER**), and a docker container that is running Selenium (**SELENIUM CONTAINER**). The two docker containers are actually just running on my laptop and sharing the laptop's harddrive, processor, and memory. Mini-linux machines! You will see how these two containers interact to do something useful in the next post in this series, but for now we are focusing on getting it set up.
+
+On your **HOME** machine make a directory called DockerImages. I do this to keep all the Docker files and images I make tidy. In the DockerImages directory, make another directory called RSeleniumImage. In the RSeleniumImage directory make a file called Dockerfile and populate it with the following code:
+
+```bash
+FROM rocker/rstudio:latest
+
+## Install required libraries for RSelenium
+RUN apt-get update && apt-get install -y \
+    libxml2-dev \
+    libcurl4-openssl-dev \
+    libssl-dev
+
+## Install R packages
+RUN R -e "install.packages(c('RSelenium', 'binman', 'wdman', 'rvest'), repos='https://cloud.r-project.org/')"
+```
+
+On your **HOME** machine navigate to the directory with the new docker file and build it. 
+```bash
+cd /HOME/DockerImages/RSeleniumImage/
+docker build .
+```
+
+Fortunately there are already selenium containers already built so we can pull them onto the **HOME** machine to use for our project. We can then check that both images are on our **HOME** machine. it should look something like the commented out print out.
+```bash
+docker pull selenium/standalone-firefox:78.0
+docker image ls
+# REPOSITORY                                       
+# r_rselenium                                     
+# selenium/standalone-firefox
+```
+
+
+You will be running and trouble shooting the containers from the **HOME** machine. Create a docker network called *mynetwork*. First you will run the **SELENIUM CONTAINER** with Firefox installed. You will name it *selenium-container* so you can refer to by name it while it is running. We are exposing 2 ports to this container with -p option.
+```bash
+docker network create mynetwork
+
+docker run -d -p 4444:4444 -p 7900:7900 --network=mynetwork --name selenium-container --shm-size="2g" selenium/standalone-firefox:78.0
+```
+
+To make sure the *selenium-container* works, point your webbrowser on the **HOME** machine to:
+http://localhost:4444 . You should get a moslty blank screen with a bit of code on it.
+
+
+Next, on the **HOME** machine you will start the **R CONTAINER** *r_with_selenium* container by linking it to *mynetwork* and exposing port 8787.
+```bash
+docker run -d --rm --network=mynetwork -p 8787:8787 --name r_with_selenium -e PASSWORD=YOURNEWPASSWORD -v /HOME/DATA/:/home/rstudio/DATA r_rselenium
+```
+
+Next you will make sure that the **R CONTAINER** can talk to the **SELENIUM CONTAINER**. From the **HOME** machine you will connect to the running **R CONTAINER** and send a command to the **SELENIUM CONTAINER**.
+
+```bash
+docker exec -it r_with_selenium /bin/bash 
+apt-get update
+apt-get install curl
+curl http://selenium-container:4444/wd/hub # should get some JSON back if working correctly
+```
+
+Now point your web browser on the **HOME** machine to http://localhost:8787 to enter into an R Studio session running inside the **R CONTAINER**. Inside the R Studio session you will type the following code to make sure that your session can talk with the **SELENIUM CONTAINER**. We will be using this network setup in the next post to scrape data from the avalanche website.
+```{r, eval=FALSE, message=FALSE}
+library(RSelenium)
+remDr <- remoteDriver(
+  remoteServerAddr = "selenium-container",
+  port = 4444L,
+  browserName = "firefox",
+  version = "78.0"  # e.g., "91.0"
+)
+
+Sys.sleep(10)  # waits for 10 seconds
+remDr$open()
+```
+
+Wow! That was a lot of abstraction. Give yourself a break and then check out the [next post](/posts/2023-09-22-scraping-weather-data.html) in this Avalanche Data Journalism series.
+
+If you are done, then you want to shut down all of the containers on the **HOME** machine and remove the Docker network that you created for the containers to talk to one another.
+```bash
+docker stop r_with_selenium selenium-container
+docker stop selenium-container
+docker rm selenium-container
+docker rm r_with_selenium
+docker network rm mynetwork
+```

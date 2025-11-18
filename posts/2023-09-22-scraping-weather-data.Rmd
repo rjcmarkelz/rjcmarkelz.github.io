@@ -1,0 +1,172 @@
+---
+title: Scraping Weather Data 2
+author: RJ Cody Markelz
+description: --Avalanche Website Data Scraping
+date: 2023-09-22
+categories: [weather, data, scraping, website, meta-data, research, journalism, data journalism, avalanche, ski touring, back country skiing]
+image: /images/data-scraping-website.png
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+This post is the second in a series teaching data scraping and visualization techniques to data journalists. See the other posts in the series [Post 1](/posts/2023-09-21-scraping-weather-data-setup.html), [Post 3](/posts/2023-09-23-summarizing-weather-data.html) and [Post 4](/posts/2023-10-01-avalanche-data-animation.html).
+
+
+### Introduction
+I started collaborating with the [Mount Shasta Avalanche Center](https://www.shastaavalanche.org/#/all) for a long form data journalism project looking at snow and avalanche condition forecasting with the backdrop of climate change. This adds an additional layer of uncertainty into any type of short-term forecast. Forecasters put out daily forecasts that integrate a lot of weather, snowfall, wind speed, direction, terrain, and previous snowfall information along with on the ground observational data collected from snow pits. [Here](https://www.shastaavalanche.org/page/how-read-advisory) is a brief summary of how to read a forecast.
+
+I thought this would be a good opportunity to show how you can collect, clean, and visualize your own data-sets for data journalism projects. I will be scraping the Avalanche Center's public website to assemble an aggregated data-set of my own to ask my own questions. This is a series of posts on the topic using open-source data tools. 
+
+This is a post showing how to extract data from a website and make a few plots. I chose the [Mount Shasta Avalanche Center](https://www.shastaavalanche.org/page/seasonal-weather-history-mount-shasta) data because I monitor this everyday throughout the season to see how the avalanche forecast changes and how the snowpack is developing. I did an intro post on this topic last year, but I would like to go into more depth on extracting information from a website. 
+
+There is a great website scraping package that is part of the tidyverse called Rvest. Check out the [Documentation](https://rvest.tidyverse.org/). The avalanche center website has a number of selectors on it to choose which range of data you would like displayed. We will be using the Selenium package in order to be able to do that and accessing it from R via the RSelenium package. Selenium runs a minimal version of a web browser that can interact with webpages. So instead of point and clicking, we can programatically interact with the website using Selenium. I will write another post on how to set that up later, but for now, load the libraries.
+
+```{r, eval=FALSE, message=FALSE}
+library(RSelenium)
+library(rvest)
+library(tidyverse)
+library(lubridate)
+```
+
+I have started the docker container that has selenium running inside. Now with my R session I will connect to that container and open the connection to the remote driver section. Please see the [last post](/posts/2023-09-21-scraping-weather-data-setup.html) in this series for how to set this up.
+```{r, eval=FALSE, message=FALSE}
+remDr <- remoteDriver(
+  remoteServerAddr = "selenium-container",
+  port = 4444L,
+  browserName = "firefox",
+  version = "78.0"  # e.g., "91.0"
+)
+
+remDr$open()
+```
+
+
+Load the URL that we are going to be interacting with to extract the information.
+```{r, eval=FALSE, message=FALSE}
+# Navigate to the website
+url <- "https://www.shastaavalanche.org/page/seasonal-weather-history-mount-shasta"
+remDr$navigate(url)
+```
+
+
+Point your regular web browser to "https://www.shastaavalanche.org/page/seasonal-weather-history-mount-shasta" and right click anywhere on the page. Your web browser will likely have an "Inspect" option what will pull up split screen view of the webpage. The top will have the regular webpage you were viewing. The bottom will have an element view of the website. You can click around on the elements and find the names of elements that you want interact with programatically. 
+
+
+Now we can programmatically select the elements on the page. I am selecting October 1, 2017 as the start of the date range and April 30, 2023 as the end of the date range. We then submit the query by clicking on that button and build in a sleep timer so that the page has time to load inside our Selenium session.
+
+```{r, eval=FALSE, message=FALSE}
+month_dropdown <- remDr$findElement(using = "css selector", "select[name='start_month']")
+month_dropdown$clickElement()
+
+selected_month <- remDr$findElement(using = "css selector", "select[name='start_month'] option[value='Oct']")
+selected_month$clickElement()
+
+year_dropdown <- remDr$findElement(using = "css selector", "select[name='start_year']")
+year_dropdown$clickElement()
+
+selected_year <- remDr$findElement(using = "css selector", "select[name='start_year'] option[value='2017']")
+selected_year$clickElement()
+
+day_dropdown <- remDr$findElement(using = "css selector", "select[name='start_day']")
+day_dropdown$clickElement()
+
+selected_day <- remDr$findElement(using = "css selector", "select[name='start_day'] option[value='1']")
+selected_day$clickElement()
+
+end_month_dropdown <- remDr$findElement(using = "css selector", "select[name='end_month']")
+end_month_dropdown$clickElement()
+
+selected_end_month <- remDr$findElement(using = "css selector", "select[name='end_month'] option[value='Apr']")
+selected_end_month$clickElement()
+
+end_year_dropdown <- remDr$findElement(using = "css selector", "select[name='end_year']")
+end_year_dropdown$clickElement()
+
+selected_end_year <- remDr$findElement(using = "css selector", "select[name='end_year'] option[value='2023']")
+selected_end_year$clickElement()
+
+end_day_dropdown <- remDr$findElement(using = "css selector", "select[name='end_day']")
+end_day_dropdown$clickElement()
+
+selected_end_day <- remDr$findElement(using = "css selector", "select[name='end_day'] option[value='30']")
+selected_end_day$clickElement()
+
+submit_button <- remDr$findElement(using = "css selector", "button[title='Submit Query']")
+submit_button$clickElement()
+
+Sys.sleep(30)
+```
+
+Once the page is loaded inside Selenium we can read the page into R saving it as **parsed_content**. We then select the weather history table and extract all of those features.
+```{r, eval=FALSE, message=FALSE}
+# make sure rvest is loaded
+page_source <- remDr$getPageSource()[[1]]
+
+parsed_content <- read_html(page_source)
+
+# right click on the page to see the tabl
+
+parsed_content %>%
+    html_element(".msac-wx-history-table") %>%
+    html_table()
+```
+
+Right click on the page in your web browser and get the xpath to a specific table.
+```{r, eval=FALSE, message=FALSE}
+xpath <- "/html/body/div[2]/main/div/article/div/table[2]"
+weather <- html_nodes(parsed_content, xpath = xpath)
+html_table(weather)
+```
+
+Finally we will make a data frame with the weather data and clean it up using R functions.
+```{r, eval=FALSE, message=FALSE}
+# make a data.frame with the table
+weather2 <- as.data.frame(html_table(weather, fill=TRUE))
+
+# rename columns
+names(weather2) <- paste(weather2[1,], weather2[2,])
+names(weather2)
+names(weather2)[1] <- paste("date")
+
+# remove rows that are now column names
+weather2 <- weather2[-c(1,2),]
+
+# take a look
+glimpse(weather2)
+
+# columns that are numeric should be converted back to such. They were coerced into character vectors because of the first two rows were characters.
+weather2 <- weather2 %>%
+mutate_at(c(2:8), as.numeric)
+
+weather2 <- weather2 %>%
+mutate_at(c(10:20), as.numeric)
+
+# coerce date column
+weather2 <- weather2 %>%
+mutate_at(1, as_date)
+
+# take a quick look
+head(weather2)
+glimpse(weather2)
+unique(weather2$`Fx Rating `)
+# [1] "LOW"       "MOD"       "CON"       "Fx Rating" ""          "HIGH" 
+
+# remove the rows that are blank or have Fx Rating - these are table formatting errors from the html
+rows_drop <- c("Fx Rating", "")
+weather3 <- weather2[!(weather2$`Fx Rating ` %in% rows_drop), ]
+
+# Close the session
+remDr$close()
+```
+
+
+
+Finally we will saved the scrapped data to an .RData file so you can access it without rerunning the code above.
+```{r, eval=FALSE, message=FALSE}
+save(weather3, file = "~/DATA/data/Avalanche-Data-2017-2023.RData")
+```
+
+See the other posts in the series [Post 1](/posts/2023-09-21-scraping-weather-data-setup.html), [Post 3](/posts/2023-09-23-summarizing-weather-data.html) and [Post 4](/posts/2023-10-01-avalanche-data-animation.html).
+
+

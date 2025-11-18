@@ -1,0 +1,66 @@
+---
+title: MLK Shoreline iNaturalist data
+description: --Overlapping Exercise and Species Occurance Data
+author: RJ Cody Markelz
+date: '2021-06-23'
+categories: [nature, iNaturalist, GIS, maps]
+freeze: TRUE
+---
+
+# MLK Shoreline and iNaturalist Observations
+
+For the last few years I commuted to work most days by bicycle along the [Martin Luther King Jr. Regional Shoreline Park](https://www.ebparks.org/parks/martinlking/) in Oakland, CA. This will be a series of data science posts exploring personal data collected by my smart watch and publicly available weather, nature and biodiversity data collected in this park. It is my hope that this will show into the brain of how a data scientist thinks, learns, asks questions, creates models, and visualizes data from right in their back yard through a series of posts. This is an intro post pulling in the data and doing some basic data exploration and visualizations.
+
+We can start by loading a few libraries to make data manipulation and visualization easier.
+
+```{r, message=FALSE}
+library(tidyverse)
+library(rinat)
+library(lubridate)
+library(leaflet)
+```
+
+Set a bounding box around the park and subset some of the observations from the database that are "research" grade. Fortunately, this area is located in the San Francisco Bay Area with many professional and advanced amateur biologists around making observations. This park is also a popular spot for bird watching.
+
+```{r, message=FALSE}
+bounds <- c(37.72794, -122.23864,37.767032, -122.196754)
+mlk_bio <- get_inat_obs(bounds = bounds, maxresults = 1000, quality = "research")
+```
+
+Inspect the data structure. At time of writing there are 5395 observations and 36 columns of data. We can see that there are various pieces of data that we would want to start taking a deeper look including: Scientific Name, the datatime of the observation, the latitude and longitude coordinates of the observation, associated image (image_url), and whether the observation is licensed as a CC for creative commons, to name a few. We also have a column of "user_login" data so we can see how many observations are contributed by different users.
+
+```{r, message=FALSE}
+dim(mlk_bio)
+names(mlk_bio)
+```
+
+There are photos included with a majority of the observations. Let's take a look.
+<!-- as.data.frame(head(mlk_bio$image_url, 3)) -->
+
+![Barn Swallow](https://inaturalist-open-data.s3.amazonaws.com/photos/145929275/medium.jpg?1627159903)
+
+![Northern Mockingbird](https://inaturalist-open-data.s3.amazonaws.com/photos/145929248/medium.jpg?1627159899)
+
+Make a quick plot of the data without a map overlay just to see what it looks like colored by large taxonomic groupings.
+
+```{r, message=FALSE}
+mlk_bio_P1  <- ggplot(mlk_bio, aes(x=longitude, y = latitude, color = iconic_taxon_name)) +
+       geom_point() + labs(color = "Taxon", title = "MLK Shoreline iNaturalist Observations")
+mlk_bio_P1
+```
+
+This is a popular birding spot, so one might expect there to be an over representation of bird (Aves) observations. Just how overrepresented are the Aves? A quick plot to take a look. Wow!
+
+```{r, message=FALSE}
+mlk_bio_P2  <- ggplot(mlk_bio, aes(x = iconic_taxon_name)) + stat_count() +
+                    scale_x_discrete(guide = guide_axis(angle = 45))
+mlk_bio_P2
+```
+Take a look at the data with the Open Maps overlay to see the outline of the water front and the various roads and bridges where observers might be located.
+
+```{r, message=FALSE}
+mlk_bio %>% leaflet() %>% addTiles() %>%
+addMarkers(~longitude, ~latitude)
+```
+
+Definitely over plotted, but will deal with that in another post. Until then!

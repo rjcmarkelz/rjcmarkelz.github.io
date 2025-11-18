@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="RJ Cody Markelz">
+<meta name="dcterms.date" content="2021-06-23">
+<meta name="description" content="–Overlapping Exercise and Species Occurance Data">
+
+<title>MLK Shoreline iNaturalist data – Cody Markelz</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-dd9b2411b26c88576e91741bbe7d8cd9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script src="../../site_libs/jquery-1.12.4/jquery.min.js"></script>
+<link href="../../site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="../../site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="../../site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="../../site_libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="../../site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="../../site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="../../site_libs/leaflet-binding-2.1.2/leaflet.js"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Cody Markelz</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../art.html"> 
+<span class="menu-text">Art</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../science.html"> 
+<span class="menu-text">Science</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../montology.html"> 
+<span class="menu-text">Montology</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../CV.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/rjcmarkelz"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/codymarkelz"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://instagram.com/codymarkelz.art"> <i class="bi bi-instagram" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">MLK Shoreline iNaturalist data</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">nature</div>
+    <div class="quarto-category">iNaturalist</div>
+    <div class="quarto-category">GIS</div>
+    <div class="quarto-category">maps</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    –Overlapping Exercise and Species Occurance Data
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>RJ Cody Markelz </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 23, 2021</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="mlk-shoreline-and-inaturalist-observations" class="level1">
+<h1>MLK Shoreline and iNaturalist Observations</h1>
+<p>For the last few years I commuted to work most days by bicycle along the <a href="https://www.ebparks.org/parks/martinlking/">Martin Luther King Jr.&nbsp;Regional Shoreline Park</a> in Oakland, CA. This will be a series of data science posts exploring personal data collected by my smart watch and publicly available weather, nature and biodiversity data collected in this park. It is my hope that this will show into the brain of how a data scientist thinks, learns, asks questions, creates models, and visualizes data from right in their back yard through a series of posts. This is an intro post pulling in the data and doing some basic data exploration and visualizations.</p>
+<p>We can start by loading a few libraries to make data manipulation and visualization easier.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rinat)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Set a bounding box around the park and subset some of the observations from the database that are “research” grade. Fortunately, this area is located in the San Francisco Bay Area with many professional and advanced amateur biologists around making observations. This park is also a popular spot for bird watching.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bounds <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">37.72794</span>, <span class="sc">-</span><span class="fl">122.23864</span>,<span class="fl">37.767032</span>, <span class="sc">-</span><span class="fl">122.196754</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mlk_bio <span class="ot">&lt;-</span> <span class="fu">get_inat_obs</span>(<span class="at">bounds =</span> bounds, <span class="at">maxresults =</span> <span class="dv">1000</span>, <span class="at">quality =</span> <span class="st">"research"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Inspect the data structure. At time of writing there are 5395 observations and 36 columns of data. We can see that there are various pieces of data that we would want to start taking a deeper look including: Scientific Name, the datatime of the observation, the latitude and longitude coordinates of the observation, associated image (image_url), and whether the observation is licensed as a CC for creative commons, to name a few. We also have a column of “user_login” data so we can see how many observations are contributed by different users.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mlk_bio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1000   37</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mlk_bio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "scientific_name"                  "datetime"                        
+ [3] "description"                      "place_guess"                     
+ [5] "latitude"                         "longitude"                       
+ [7] "tag_list"                         "common_name"                     
+ [9] "url"                              "image_url"                       
+[11] "user_login"                       "id"                              
+[13] "species_guess"                    "iconic_taxon_name"               
+[15] "taxon_id"                         "num_identification_agreements"   
+[17] "num_identification_disagreements" "observed_on_string"              
+[19] "observed_on"                      "time_observed_at"                
+[21] "time_zone"                        "positional_accuracy"             
+[23] "public_positional_accuracy"       "geoprivacy"                      
+[25] "taxon_geoprivacy"                 "coordinates_obscured"            
+[27] "positioning_method"               "positioning_device"              
+[29] "user_id"                          "user_name"                       
+[31] "created_at"                       "updated_at"                      
+[33] "quality_grade"                    "license"                         
+[35] "sound_url"                        "oauth_application_id"            
+[37] "captive_cultivated"              </code></pre>
+</div>
+</div>
+<p>There are photos included with a majority of the observations. Let’s take a look. <!-- as.data.frame(head(mlk_bio$image_url, 3)) --></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://inaturalist-open-data.s3.amazonaws.com/photos/145929275/medium.jpg?1627159903" class="img-fluid figure-img"></p>
+<figcaption>Barn Swallow</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://inaturalist-open-data.s3.amazonaws.com/photos/145929248/medium.jpg?1627159899" class="img-fluid figure-img"></p>
+<figcaption>Northern Mockingbird</figcaption>
+</figure>
+</div>
+<p>Make a quick plot of the data without a map overlay just to see what it looks like colored by large taxonomic groupings.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mlk_bio_P1  <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mlk_bio, <span class="fu">aes</span>(<span class="at">x=</span>longitude, <span class="at">y =</span> latitude, <span class="at">color =</span> iconic_taxon_name)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Taxon"</span>, <span class="at">title =</span> <span class="st">"MLK Shoreline iNaturalist Observations"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>mlk_bio_P1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This is a popular birding spot, so one might expect there to be an over representation of bird (Aves) observations. Just how overrepresented are the Aves? A quick plot to take a look. Wow!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mlk_bio_P2  <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mlk_bio, <span class="fu">aes</span>(<span class="at">x =</span> iconic_taxon_name)) <span class="sc">+</span> <span class="fu">stat_count</span>() <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">scale_x_discrete</span>(<span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">angle =</span> <span class="dv">45</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>mlk_bio_P2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Take a look at the data with the Open Maps overlay to see the outline of the water front and the various roads and bridges where observers might be located.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mlk_bio <span class="sc">%&gt;%</span> <span class="fu">leaflet</span>() <span class="sc">%&gt;%</span> <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addMarkers</span>(<span class="sc">~</span>longitude, <span class="sc">~</span>latitude)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-d0b9cdddc702adc48389" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-d0b9cdddc702adc48389">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[37.73505,37.7392116667,37.7427283333,37.7421869706,37.7381139726,37.7381887426,37.7419422577,37.7425843954,37.7320000779,37.7360752684,37.7335133523,37.7379631067,37.7368887417,37.7365467022,37.7360121628,37.7313435294,37.7358843607,37.7407716667,37.7425233333,37.7419616667,37.74247,37.742725,37.742485,37.742485,37.7665912595,37.743295,37.739844902,37.7422144139,37.7420000152,37.7423566092,37.7423566092,37.7419154371,37.7424244816,37.7432050099,37.74169485,37.7424244816,37.7418815006,37.7416100086,37.7424414497,37.7422887368,37.7422887368,37.7422887368,37.7422887368,37.7422887368,37.7410161164,37.7426280985,37.742085119,37.7422378324,37.742322673,37.7415760721,37.7425771943,37.7420511826,37.7414912306,37.7432898494,37.7421190553,37.7423905454,37.7423905454,37.7419154371,37.7434425603,37.7423566092,37.7435104317,37.7456528774,37.7427299067,37.7431032023,37.7462290643,37.74616,37.7404166667,37.7416195419,37.7420868914,37.7422007231,37.7388224275,37.7425716667,37.7421659435,37.743325,37.7436280234,37.7558527778,37.740371,37.7423200465,37.7423200465,37.7423200465,37.7423200465,37.7423200465,37.758576,37.7312952852,37.7389805081,37.7389805081,37.7389805081,37.7389805081,37.7389805081,37.7389805081,37.7389805081,37.7389805081,37.7389805081,37.7389805081,37.7389805081,37.7429142634,37.7392268685,37.7409146141,37.7354744397,37.7414504206,37.7497052516,37.7499959427,37.7497064331,37.749469712,37.7466166536,37.7480249553,37.747995,37.7534709872,37.7380633253,37.7382868008,37.7376280504,37.7414485649,37.735914142,37.7349725097,37.736923852,37.7402497709,37.7402111478,37.7416137536,37.7382191045,37.7419969744,37.75927,37.7522706287,37.75925,37.7514300127,37.7523033426,37.7592716667,37.7592166667,37.75922,37.7447783333,37.7421860446,37.7412794342,37.7412794342,37.7419361111,37.7418611111,37.7421972222,37.741975,37.7412794342,37.7415472222,37.7412794342,37.7412794342,37.7412794342,37.7412794342,37.7412794342,37.7412794342,37.7412794342,37.7412794342,37.7412794342,37.7412794342,37.7412794342,37.7412794342,37.7412794342,37.7412794342,37.7422748539,37.741970674,37.7421413457,37.7635641097,37.7418747753,37.743418671,37.7410306688,37.7642123681,37.7449334769,37.7427914663,37.7427909669,37.7423366667,37.7619883333,37.7616933333,37.761275,37.74612212,37.7422909244,37.7360310191,37.7405043926,37.7337238735,37.7415689726,37.7458357765,37.755845,37.760975,37.7574616667,37.7558466667,37.7558466667,37.7558533333,37.7558466667,37.755845,37.755845,37.7470166667,37.7438091249,37.741158429,37.7422473777,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.745614984,37.74546816,37.7418043947,37.7419820474,37.7418238423,37.7420634217,37.7418937667,37.7419156833,37.74199835,37.7419089667,37.7419103167,37.7419489833,37.7421275667,37.7363749167,37.7376336833,37.73740155,37.7390537833,37.7411419167,37.764188312,37.7419697155,37.7347072703,37.7351934264,37.7350279711,37.7345061482,37.7388550781,37.7366201469,37.7360431842,37.7360695139,37.7358149702,37.7358281355,37.737584469,37.7361590421,37.739150363,37.7384956746,37.738423583,37.7382391081,37.7384696083,37.7381641657,37.7377788275,37.7327172303,37.7311278945,37.7427646387,37.7439532004,37.7449347639,37.7424855263,37.7424262093,37.7401683579,37.7424877292,37.7428737521,37.7422459337,37.7422119974,37.7441956233,37.7424414013,37.7436249161,37.741868726,37.7423930501,37.7424562929,37.7418312886,37.739824796,37.7392405545,37.7392369037,37.7399665596,37.7435185329,37.7440247835,37.7435950239,37.7424305977,37.7424756036,37.7423080576,37.7422401851,37.7421570603,37.7419331416,37.7423931933,37.7427595951,37.74239388,37.7424790638,37.743505172,37.739129194,37.7382027951,37.7369205592,37.7365777244,37.7363075387,37.736665223,37.7396167817,37.7392850952,37.7388181862,37.7404257088,37.7396369321,37.7384125218,37.737930229,37.7390504479,37.7379084873,37.7429961348,37.7424905408,37.7422683647,37.7420496345,37.742746122,37.7423110501,37.7427856257,37.7424505067,37.7431684655,37.7432623192,37.7428630422,37.7432419047,37.7433288652,37.7427471825,37.7422466243,37.7432222856,37.7439192923,37.7434028346,37.7429714782,37.7431265759,37.742968827,37.7427299494,37.7411272491,37.7413730253,37.7418073073,37.7419955484,37.7363950376,37.7529221559,37.740014973,37.7412197371,37.7419685604,37.7431541061,37.7427638428,37.7428826188,37.7428826188,37.7428826188,37.7428826188,37.7483970099,37.7527177863,37.7529221559,37.7522453488,37.7517301132,37.7508156541,37.759042,37.7563402053,37.7506582918,37.7506233726,37.7506233726,37.7506233726,37.7506874453,37.7506824937,37.7506501619,37.75163474,37.7423366667,37.740305,37.7424283333,37.7424916667,37.7413666667,37.742195,37.74213,37.7421416667,37.7426601752,37.7406216667,37.739955,37.7354583333,37.7412771379,37.7374283333,37.7410666813,37.7363742039,37.7375145662,37.736055,37.74168,37.7423466667,37.7419806345,37.742864738,37.76212,37.7432993357,37.7430559584,37.7445378384,37.7421418097,37.74225687,37.7439112,37.7439110735,37.7439110735,37.7439110735,37.7439110735,37.7439110735,37.7439110735,37.7439110735,37.7439110735,37.7468866667,37.7467182099,37.7443904147,37.7457083754,37.7440261492,37.7422339702,37.7427549893,37.7439112,37.7443694179,37.7418187692,37.7416718402,37.7454630493,37.7413087982,37.7303530217,37.748864125,37.748910038,37.7485174447,37.748081735,37.7481094998,37.73128,37.731225,37.7317616667,37.7423949303,37.7417087322,37.7391989101,37.74815,37.7481466667,37.74802,37.7462300026,37.7418674949,37.7417287376,37.7454842269,37.7420172463,37.7419324053,37.7418815006,37.7419154371,37.7420681508,37.7431371382,37.7434934639,37.7446981714,37.7444945602,37.7440364331,37.7411179268,37.74114,37.741423,37.7428995868,37.7419154371,37.7419154371,37.7418984688,37.7418752162,37.7305265,37.7459866667,37.7504827338,37.7400051384,37.7420340692,37.7416827877,37.7421985733,37.7420835282,37.7426913622,37.7424772461,37.7528406677,37.7420933333,37.7419291083,37.7418473721,37.7422710295,37.7438825453,37.7458678193,37.7418533478,37.7418683933,37.7416211266,37.742468,37.742477,37.742425,37.741807,37.74192,37.742672,37.741888,37.742455,37.742441,37.742255,37.742248,37.742228,37.74107748,37.750775,37.750861,37.750875,37.750873,37.751788,37.751317,37.751316,37.751298,37.751318,37.751341,37.750966,37.749575,37.763895,37.7431412443,37.7438720822,37.74508346,37.742475,37.742395,37.7422183333,37.742265,37.742355,37.742355,37.7424,37.742455,37.7424316667,37.742815,37.75520647,37.75931294,37.76007063,37.75922376,37.757755,37.7430682633,37.7437150075,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7523283333,37.75217,37.7481670741,37.7480230954,37.7478806727,37.7439112,37.7439112,37.7439112,37.7574966667,37.75435,37.7485626173,37.7557983398,37.7444443553,37.7438726064,37.7423735773,37.7435613352,37.7433746888,37.7422378324,37.7423905454,37.7423905454,37.7419154371,37.7419154371,37.7422378324,37.7421529916,37.7422887368,37.7425771943,37.7421190553,37.7422038961,37.7423905454,37.7423566092,37.7423566092,37.7420681508,37.7422717686,37.7423566092,37.7421360235,37.742322673,37.742492354,37.7417796912,37.7420511826,37.7422548005,37.7422208642,37.7411452369,37.7411452369,37.7377414121,37.7520609874,37.7497811384,37.7561235946,37.7564355079,37.7562892532,37.7563987229,37.7565391893,37.7563853406,37.7563979964,37.7562585468,37.7562256654,37.7565583942,37.7566488708,37.7564970957,37.7414441158,37.7561944347,37.7314949,37.7628944444,37.7439112,37.7426227718,37.7424809227,37.7564025864,37.7424902578,37.7426722138,37.7422784941,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7350566667,37.7405283333,37.73804,37.73535,37.7418066667,37.7417983333,37.742135,37.7400033333,37.739735,37.739125,37.73776,37.7364183333,37.7350666667,37.741815,37.7372166667,37.736744544,37.7403435297,37.7423748972,37.7413372239,37.7410389992,37.7380790929,37.7322549573,37.7400306392,37.7424583333,37.7424383333,37.7423333333,37.7429124349,37.7425231211,37.7397292694,37.7488438818,37.7423200465,37.7314071149,37.7309761328,37.7390705224,37.7439112,37.7443184185,37.7392449243,37.7415705584,37.7422006509,37.7419474917,37.7419474917,37.7427108503,37.7401654623,37.7401654623,37.7401654623,37.7399729598,37.7405189664,37.7409621167,37.7409621167,37.7409621167,37.7431234953,37.742090759,37.7424270869,37.7435724244,37.742751601,37.7425484215,37.7419739907,37.7423063866,37.7422030892,37.7418119094,37.742762206,37.7415998877,37.740762074,37.741470037,37.7406838108,37.7385443184,37.7382680108,37.738367571,37.7422413495,37.7415992868,37.7415735732,37.7416500817,37.7414678853,37.7416232191,37.7416338338,37.7425501055,37.7424862237,37.7425670735,37.7426349457,37.758576,37.7421455851,37.7421465705,37.7436666667,37.739868661,37.7399375962,37.7392506273,37.7425236816,37.7393821355,37.7421808727,37.7369722627,37.7390523039,37.7396234101,37.7393052456,37.7474352396,37.7418866667,37.741775,37.7423983333,37.7416683333,37.74151,37.7480366667,37.7353383333,37.741215,37.739115,37.7400266667,37.7417633333,37.7420216667,37.7420216667,37.7420216667,37.7420216667,37.7417933333,37.742005,37.7397716667,37.73844,37.7350966667,37.73496,37.7347666667,37.7367583333,37.7376,37.7375883333,37.7375883333,37.7430480216,37.7401717104,37.7400510741,37.7397498801,37.7406362247,37.7400717546,37.754423055,37.754002292,37.7429324548,37.7429939146,37.7457554848,37.7441102594,37.7442645618,37.7442123761,37.7305220401,37.760396617,37.76202896,37.7597939204,37.7598617768,37.7597906568,37.7600823097,37.7604894457,37.7598448127,37.7592341026,37.7588269597,37.7600144535,37.7594716016,37.7425632751,37.7424192796,37.7424923719,37.7423505955,37.7426390528,37.7426390528,37.7424923719,37.7425881487,37.7423930158,37.7425283152,37.7424957724,37.7453579407,37.7424666667,37.7424616667,37.7424616667,37.7424616667,37.7424616667,37.7424783333,37.7424783333,37.7424883333,37.7424883333,37.7425,37.7424666667,37.7439112,37.7439112,37.7439112,37.7439112,37.7439112,37.7439112,37.7439112,37.7397,37.7423310793,37.7417469083,37.742658054,37.7414808529,37.7419629498,37.7421919445,37.7421937449,37.7426360522,37.7424579665,37.742480708,37.7409609508,37.7411328112,37.7427035716,37.7416616667,37.7446541286,37.7431779341,37.7431779341,37.7441111639,37.7434833561,37.7439112,37.7423081391,37.7442299378,37.7420071383,37.7420410746,37.7431439983,37.7424143737,37.7425161822,37.7420410746,37.7419562337,37.7418544244,37.7439754221,37.7416508054,37.7422143931,37.7415829323,37.7418718937,37.7528363923,37.75526605,37.753746396,37.7521251013,37.742305,37.741786,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7305220401,37.7411416667,37.7417666667,37.7548114411,37.7400466667,37.7389216667,37.7433136891,37.7630308386,37.7424227583,37.7630219846,37.7428409266,37.7404333333,37.730606629,37.7412831461,37.730606629,37.730606629,37.730606629,37.730606629,37.742669,37.7648443242,37.7596748553,37.7438472222,37.7429014999,37.7409133333,37.73673463,37.7417605076,37.7411472079,37.753404348,37.7533195201,37.7534934172,37.7534425206,37.7625035257,37.7439800888,37.7435028753,37.7420807901,37.7439646225,37.7429770833,37.7434937767,37.7431750336,37.7418812135,37.7432953845,37.7434817943,37.7431220349,37.74251975,37.7427043056,37.7415679722,37.7400480556,37.7394676111,37.7393683611,37.7369763611,37.7374367222,37.7378141111,37.7395081667,37.7400063333,37.7424987778,37.7424990833,37.7422906944,37.7428132778,37.7428383333,37.7428110278,37.7427207222,37.7413284974,37.742428883,37.7408953913,37.7380916667,37.7668806367,37.7415102336,37.7412349097,37.7371716667,37.758576,37.7365716667,37.7460194444,37.7473583333,37.7456,37.7564444444,37.7428333333,37.7616666667,37.7422720132,37.7427895393,37.7435149182,37.7435149182,37.7431343523,37.7421158575,37.7422431186,37.7422834179,37.7421328256,37.7425994486,37.7423820595,37.7431343523,37.7420283333,37.7423666667,37.740355,37.74032,37.74022,37.74428,37.7389018943,37.742759391,37.7412265974,37.7346940248,37.7405478595,37.7399878961,37.7373443546,37.7396145848,37.7389448912,37.7383063798,37.7374784291,37.7389018943,37.7406496706,37.7386750435,37.7396266522,37.7382431012,37.7402933312,37.7402933312,37.739514112,37.7412775025,37.7413623442,37.7426622685,37.742197391,37.7419203185,37.7417695832,37.7415186751,37.7422955969,37.7303637509,37.758576,37.7439112,37.7439112,37.7439112,37.7439112,37.7439112,37.74018,37.76487,37.7646366667,37.730606629,37.730606629,37.730606629,37.730606629,37.730606629,37.730606629,37.730606629,37.730606629,37.730606629,37.730606629,37.7480616939,37.7514029933,37.7514490752,37.7547608298,37.7547129116,37.7484163035,37.7599304729,37.7439112,37.7439112,37.7439112],[-122.2092966667,-122.2105333333,-122.20857,-122.2092244774,-122.2098464146,-122.2098561376,-122.2091634572,-122.2112267464,-122.2084523365,-122.2048967332,-122.2096288204,-122.204372026,-122.2047461942,-122.2054730728,-122.2063327208,-122.2078082711,-122.2050388902,-122.2110466667,-122.2089283333,-122.20785,-122.2083133333,-122.208565,-122.21104,-122.211055,-122.2372444996,-122.237305,-122.2113268732,-122.2107172174,-122.2106056929,-122.2110726207,-122.2110726207,-122.2092272609,-122.2087766497,-122.2097207873,-122.2112013667,-122.2098280757,-122.2116305201,-122.2113730281,-122.2100641101,-122.2110726207,-122.2110726207,-122.2109438746,-122.2109438746,-122.2114374011,-122.2114374011,-122.209935364,-122.2106649249,-122.21098679,-122.2104288905,-122.2111584513,-122.2105361789,-122.211051163,-122.2116519778,-122.2091199725,-122.2089483111,-122.2110726207,-122.2110726207,-122.2096564143,-122.2090555995,-122.2099782794,-122.2093560069,-122.2224672137,-122.2104718058,-122.2093989222,-122.2226182207,-122.222607,-122.200645,-122.2079063344,-122.2110663191,-122.2110376233,-122.2204617569,-122.2088783333,-122.2373803243,-122.2378533333,-122.2340430606,-122.2254472222,-122.206273,-122.2114556105,-122.2114556105,-122.2114556105,-122.2114556105,-122.2114556105,-122.235337,-122.2080839626,-122.2086657825,-122.2086657825,-122.2086657825,-122.2086657825,-122.2086657825,-122.2086657825,-122.2086657825,-122.2086657825,-122.2086657825,-122.2086657825,-122.2086657825,-122.209041987,-122.2056172821,-122.2094760496,-122.206444616,-122.2103683074,-122.2213387039,-122.2206572192,-122.2214581502,-122.2193487798,-122.2152713166,-122.2181980518,-122.2294216667,-122.2074266382,-122.2093396466,-122.2095394712,-122.2052123416,-122.2106685417,-122.2022726406,-122.2016937238,-122.2032053705,-122.2070784803,-122.2063806857,-122.2076045858,-122.211383904,-122.2079566884,-122.2175283333,-122.2100552079,-122.2175883333,-122.2087592077,-122.2103283333,-122.2175466667,-122.217625,-122.21763,-122.2058416667,-122.2303392598,-122.2159658745,-122.2159658745,-122.2110111111,-122.2109333333,-122.209825,-122.2094777778,-122.2159658745,-122.2065416667,-122.2159658745,-122.2159658745,-122.2159658745,-122.2159658745,-122.2159658745,-122.2159658745,-122.2159658745,-122.2159658745,-122.2159658745,-122.2159658745,-122.2159658745,-122.2159658745,-122.2159658745,-122.2159658745,-122.2302796917,-122.2292051598,-122.2302699124,-122.2248285775,-122.2330317719,-122.2324690056,-122.2299208046,-122.2383848672,-122.2322844631,-122.2351197259,-122.2353933123,-122.2089916667,-122.2305433333,-122.22933,-122.2257483333,-122.2268669905,-122.2375667408,-122.2345621107,-122.2377535413,-122.2271924727,-122.2375524896,-122.2281451204,-122.2254333333,-122.222375,-122.2159633333,-122.225425,-122.22542,-122.22542,-122.22542,-122.225425,-122.225425,-122.226945,-122.2368998936,-122.2099191702,-122.2305158883,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.2147547168,-122.20910029,-122.2097057946,-122.2097610953,-122.2099732167,-122.2091527764,-122.2104614167,-122.2104250667,-122.2102166333,-122.2104636,-122.2104632667,-122.2103456333,-122.20989,-122.2029847333,-122.2041009,-122.2039098167,-122.2053711333,-122.2071871667,-122.2384489049,-122.2104587229,-122.2090624518,-122.2092054561,-122.2091679051,-122.2090230659,-122.212311349,-122.2085549686,-122.2087908364,-122.2082114792,-122.2086405507,-122.2095739594,-122.2087907544,-122.2117304555,-122.2102393959,-122.2096613499,-122.2095983479,-122.2106476776,-122.2114302967,-122.2116877887,-122.2117307041,-122.2085277375,-122.206791816,-122.2109099481,-122.2129537914,-122.2140580382,-122.2110572331,-122.2110472586,-122.2129636969,-122.2110110327,-122.2111800119,-122.2110459015,-122.2137120172,-122.2124520349,-122.2108480739,-122.214147191,-122.2117740809,-122.2110682803,-122.2110686599,-122.2106903059,-122.2113104574,-122.2109895911,-122.2119337287,-122.2121697631,-122.2090878889,-122.2093453809,-122.2083950298,-122.2086525219,-122.2086747798,-122.2114424123,-122.2116248941,-122.2114401626,-122.2087845572,-122.2088985258,-122.2101665046,-122.2087607542,-122.2102026098,-122.2077009827,-122.2057134658,-122.203887552,-122.2056628391,-122.2064423561,-122.2049859166,-122.2069710866,-122.2115546465,-122.2110906243,-122.211076878,-122.2104177251,-122.210348323,-122.2107268497,-122.2100744024,-122.2114889324,-122.2105803341,-122.2110990062,-122.2111811489,-122.2111248225,-122.2109883651,-122.2101206705,-122.2109192982,-122.2104358301,-122.2101652622,-122.2096083686,-122.2109957412,-122.2079044953,-122.2097294033,-122.2088234872,-122.210008353,-122.210012041,-122.2101300582,-122.210264504,-122.2101411223,-122.2108247504,-122.2095111385,-122.210868001,-122.2105843574,-122.2099366039,-122.2095118091,-122.2092442587,-122.2092590109,-122.2077432275,-122.2127712214,-122.2058369487,-122.2069527476,-122.2072239511,-122.2094418376,-122.2102572291,-122.2101284831,-122.2101284831,-122.2101284831,-122.2101284831,-122.2107292979,-122.2109021629,-122.2127712214,-122.2121781902,-122.2113018106,-122.209837745,-122.218008,-122.2149998848,-122.2095253156,-122.2096814033,-122.2096814033,-122.2096814033,-122.2097241943,-122.2097341513,-122.2098448364,-122.2102772339,-122.2094716667,-122.2063366667,-122.2110616667,-122.209045,-122.20942,-122.2098083333,-122.20997,-122.2099966667,-122.209712367,-122.2110533333,-122.2107383333,-122.2095416667,-122.209795606,-122.2038633333,-122.2112594576,-122.2080284234,-122.2045656399,-122.2052833333,-122.2075366667,-122.211105,-122.2082764953,-122.2095705939,-122.2323916667,-122.2350403604,-122.2363011711,-122.2330673225,-122.2297149485,-122.2298097457,-122.2136231,-122.2136229649,-122.2136229649,-122.2136229649,-122.2136229649,-122.2136229649,-122.2136229649,-122.2136229649,-122.2136229649,-122.226745,-122.2271395623,-122.2267819427,-122.2360156033,-122.2335787993,-122.2087962461,-122.2088358925,-122.2136231,-122.2331412086,-122.2296778925,-122.2293126984,-122.2327731914,-122.2301551824,-122.2361954801,-122.2292177004,-122.2355533883,-122.2319635023,-122.2340852856,-122.2343085178,-122.208345,-122.2084583333,-122.2080166667,-122.23503736,-122.230743331,-122.2341129835,-122.2356866667,-122.2356866667,-122.230125,-122.2274866667,-122.2109344735,-122.2108932425,-122.226328945,-122.2106863826,-122.2106863826,-122.2107507556,-122.2106863826,-122.2106649249,-122.2087766497,-122.2065665095,-122.2094632953,-122.209870991,-122.2087551921,-122.2067381709,-122.2068,-122.207081,-122.21098679,-122.2110726207,-122.2110726207,-122.2110082476,-122.2113364895,-122.2075914,-122.226805,-122.2110223126,-122.1980223992,-122.2110425572,-122.2110748018,-122.2082492854,-122.210386059,-122.210000569,-122.2096785414,-122.2109190181,-122.2099666667,-122.2108621986,-122.2107204845,-122.2111543221,-122.2255917884,-122.2264805037,-122.2109397502,-122.2109522392,-122.2170189553,-122.211047,-122.211094,-122.208353,-122.207756,-122.207834,-122.208699,-122.210395,-122.209084,-122.211025,-122.209722,-122.20972,-122.209715,-122.2087714353,-122.211458,-122.211435,-122.211434,-122.211249,-122.21111,-122.210094,-122.210102,-122.210067,-122.210087,-122.210113,-122.21111,-122.211554,-122.2281883333,-122.2159428857,-122.2133795844,-122.2124648401,-122.211105,-122.211085,-122.20969,-122.2095316667,-122.20938,-122.20938,-122.2094083333,-122.209275,-122.2092833333,-122.208595,-122.21416644,-122.21762999,-122.2168396,-122.21747466,-122.231125,-122.2332988464,-122.2378679769,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2325883333,-122.2327583333,-122.2385036149,-122.237462392,-122.2377320681,-122.2136231,-122.2136231,-122.2136231,-122.2285083333,-122.200805,-122.2374926799,-122.2358093262,-122.2383684619,-122.2379394666,-122.2096564143,-122.2091414302,-122.2089912265,-122.2105576365,-122.2110082476,-122.2110726207,-122.2112871974,-122.2112871974,-122.2103859752,-122.2103645175,-122.2100211947,-122.2098495334,-122.2104932635,-122.2105147212,-122.2102572291,-122.2111369937,-122.2111369937,-122.2107078402,-122.210922417,-122.2106649249,-122.2107292979,-122.2110726207,-122.2110082476,-122.2113730281,-122.2105147212,-122.211051163,-122.2107078402,-122.2096835856,-122.2096835856,-122.2105029867,-122.2103349517,-122.212769432,-122.2146071383,-122.2148132426,-122.2148073106,-122.2148884906,-122.214621754,-122.2148780515,-122.2147537343,-122.2148377679,-122.2147027554,-122.2151853516,-122.2151551564,-122.2150028532,-122.2103006911,-122.2297273092,-122.2324894997,-122.2373388889,-122.2136231,-122.211044191,-122.211071013,-122.2043614603,-122.2109946467,-122.2110697485,-122.2108484663,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2074566667,-122.21094,-122.2101916667,-122.2065183333,-122.2108333333,-122.2108283333,-122.2098416667,-122.2060916667,-122.2059133333,-122.205365,-122.20418,-122.2048633333,-122.207445,-122.2108216667,-122.20368,-122.2120000881,-122.2124515789,-122.2096225015,-122.2073807905,-122.207081731,-122.2086622955,-122.208047838,-122.2114384937,-122.2110666667,-122.2110666667,-122.2089833333,-122.208942355,-122.2095217122,-122.2091032876,-122.2310614023,-122.2114556105,-122.2079907895,-122.2079914336,-122.2094877714,-122.2136231,-122.2137303884,-122.2096963536,-122.2098949723,-122.2168440303,-122.2161054516,-122.2161054516,-122.2172440052,-122.2150736541,-122.2150736541,-122.2150736541,-122.2141321988,-122.2137528586,-122.2152575666,-122.2152575666,-122.2152575666,-122.2147680354,-122.216344706,-122.2087115296,-122.2087490559,-122.2113052257,-122.2110069942,-122.2104815758,-122.2110518107,-122.2109389892,-122.2107641214,-122.2095161923,-122.2097200402,-122.2095698365,-122.2096449384,-122.2095927321,-122.2096637385,-122.2099541578,-122.2099495758,-122.2110705531,-122.2110900711,-122.211102989,-122.2109556146,-122.2111599791,-122.2108707079,-122.211098668,-122.2099238881,-122.2110522426,-122.2096449384,-122.2091675052,-122.235337,-122.2103438155,-122.210160616,-122.2061,-122.2130818292,-122.210432142,-122.2069637105,-122.2086089104,-122.2068668157,-122.2072285786,-122.207359001,-122.2086333856,-122.2077992186,-122.2103982791,-122.2266777554,-122.2103966667,-122.2105866667,-122.2083166667,-122.210785,-122.2109016667,-122.2367083333,-122.2065666667,-122.207265,-122.2102483333,-122.2107283333,-122.210805,-122.2110883333,-122.2110933333,-122.2110933333,-122.2110933333,-122.2108433333,-122.207985,-122.20595,-122.20477,-122.2071333333,-122.2073966667,-122.2096133333,-122.2106316667,-122.2110633333,-122.2110666667,-122.21104,-122.2110202943,-122.2153385729,-122.2147216648,-122.2150126845,-122.215548791,-122.2153342143,-122.2121493972,-122.2122674144,-122.2107520712,-122.2111209181,-122.2116148743,-122.2131464572,-122.2125114731,-122.211691625,-122.2075913474,-122.2231916989,-122.2241401699,-122.2195053128,-122.2192478207,-122.2176647181,-122.2192692784,-122.2186952856,-122.2199559239,-122.2232604054,-122.2227239636,-122.2230029133,-122.2234964398,-122.2107519244,-122.2110312661,-122.2109891707,-122.2112842137,-122.2111769254,-122.2110589082,-122.2111474211,-122.2112091119,-122.2106082971,-122.2110589082,-122.2110714858,-122.2052398553,-122.2110366667,-122.2110283333,-122.2110666667,-122.2110666667,-122.2110666667,-122.2110216667,-122.2110533333,-122.2110366667,-122.211045,-122.211045,-122.2110533333,-122.2136231,-122.2136231,-122.2136231,-122.2136231,-122.2136231,-122.2136231,-122.2136231,-122.2106166667,-122.2089185556,-122.2108061639,-122.2089132174,-122.2101752184,-122.2110237265,-122.211075795,-122.2096894057,-122.2089741323,-122.2110704321,-122.2110666533,-122.2101659667,-122.2102045363,-122.2088506671,-122.2094716667,-122.2105441836,-122.2075401095,-122.2075401095,-122.209600046,-122.2090206889,-122.2136231,-122.2087125087,-122.2099219111,-122.2089777735,-122.2099433688,-122.2118316439,-122.2108875063,-122.2111020831,-122.2101579455,-122.2105656412,-122.2103725222,-122.2097717074,-122.2103296069,-122.209546084,-122.2103725222,-122.2093036459,-122.2127988553,-122.2141721463,-122.2122838711,-122.2107437985,-122.211075,-122.210784,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2096783333,-122.2116916667,-122.2144244667,-122.2096783333,-122.20987,-122.2064621171,-122.2381917037,-122.2095707514,-122.2190041468,-122.2088981463,-122.2103583333,-122.2075913474,-122.2159658745,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.208587,-122.202003849,-122.2204444375,-122.2201833333,-122.2097152394,-122.2091,-122.20333398,-122.2080413724,-122.2078105645,-122.2124644033,-122.2124268524,-122.2127165309,-122.2125287763,-122.2378968647,-122.2100541257,-122.2099540044,-122.2098473895,-122.2103300486,-122.2104590143,-122.210073491,-122.2100865727,-122.2101355144,-122.2100740659,-122.2097653368,-122.2101795134,-122.2089763611,-122.2087338333,-122.2075533611,-122.2062049722,-122.2057248889,-122.2056942778,-122.2036502222,-122.2109911944,-122.2112152778,-122.2106468889,-122.2107506389,-122.2110985556,-122.2110885278,-122.2095493333,-122.2087379722,-122.2087236667,-122.2087463333,-122.2089020278,-122.2069631283,-122.2110853727,-122.2102072714,-122.2275616667,-122.2169160034,-122.2098563061,-122.2071195461,-122.2036966667,-122.235337,-122.21003,-122.2267472222,-122.2078138889,-122.2229388889,-122.2163416667,-122.2023166667,-122.2333861111,-122.217408189,-122.2175181596,-122.2150237052,-122.2150237052,-122.2091130518,-122.2096219561,-122.2136989139,-122.211070349,-122.2111561797,-122.2108128569,-122.2093404967,-122.2091130518,-122.2110366667,-122.2110533333,-122.2095716667,-122.2096116667,-122.2096033333,-122.2062916667,-122.2049169091,-122.2096963724,-122.2114185837,-122.2085761783,-122.2065262345,-122.2063331154,-122.2061557678,-122.2058181313,-122.2053531717,-122.2048206569,-122.2039442899,-122.2049169091,-122.207277253,-122.2051056747,-122.2059505467,-122.2076639927,-122.2064189461,-122.2064189461,-122.2057705941,-122.2079853562,-122.2080497292,-122.2085526799,-122.2092242952,-122.209534557,-122.2100023774,-122.2089667902,-122.2102384117,-122.2018307509,-122.235337,-122.2136231,-122.2136231,-122.2136231,-122.2136231,-122.2136231,-122.2101583333,-122.22583,-122.2262116667,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.2075913474,-122.236507237,-122.2117793302,-122.2123750336,-122.2272455937,-122.2143645957,-122.200762933,-122.2316023988,-122.2136231,-122.2136231,-122.2136231],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[37.7303530217,37.7668806367],"lng":[-122.2385036149,-122.1980223992]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Definitely over plotted, but will deal with that in another post. Until then!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2025 Cody Markelz</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

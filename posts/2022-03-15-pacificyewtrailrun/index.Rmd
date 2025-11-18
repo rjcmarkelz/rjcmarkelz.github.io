@@ -1,0 +1,63 @@
+---
+title: Miracle Mile Species 1
+description: -- Pacific Yew (Taxus brevifolia)
+author: RJ Cody Markelz
+date: 2022-03-15
+categories: [species distribution, modeling, GIS, maps, data, trail run, exercise, explore, illustration]
+image: /images/Taxus_brevifolia.png
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+<p align="Left">
+  <img src="/images/Taxus_brevifolia.png" alt="Pacific Yew illustration" height="300"/>
+</p>
+
+I have started checking off all the conifer species that occur in the [Miracle Mile](/posts/gbif-miracle-mile-species/). I recently found some Pacific Yew (*Taxus brevifolia*) on a trail run with a friend. This was also my first post to iNaturalist. A good time to take a look at the data.
+
+Load the libraries.
+```{r, message=FALSE}
+library(rinat)
+library(tidyverse)
+```
+
+Load the data.
+```{r, message=FALSE}
+TrailRun1 <- read.csv("~/DATA/data/TrailRun_PacYew.csv")
+glimpse(TrailRun1)
+```
+
+Make a Northern California polygon for iNaturalist, pull in the data and take look.
+```{r, message=FALSE}
+bounds <- c(40.194, -124.4323, 42.0021, -120)
+species <- c("taxus brevifolia")
+pacyew_iNat <- get_inat_obs(query = species, bounds = bounds, maxresults = 1000, quality = "research")
+dim(pacyew_iNat)
+```
+
+
+I *had* one of the newest observations of this species in the data set. My username is rjcmarkelz.
+```{r, message=FALSE}
+glimpse(pacyew_iNat)
+head(pacyew_iNat$user_login, 10)
+```
+Here is my image that I uploaded. I had a species confirmation from the community within 12 hours.
+
+![](https://inaturalist-open-data.s3.amazonaws.com/photos/181815986/medium.jpeg)
+
+Quick map to show all the observations.
+```{r, message=FALSE}
+maps::map(database = "state", region = "california")
+points(TrailRun1[ , c("position_long", "position_lat")], pch = ".", col = "red", cex = 3)
+points(pacyew_iNat[ , c("longitude", "latitude")], pch = ".", col = "blue", cex = 3)
+```
+
+Make a quick plot to show the overlay of the run data and the coordinates of the image I took shown as a red dot.
+```{r, message=FALSE}
+tr_plot1 <- ggplot(TrailRun1, aes(x = position_long, y = position_lat)) +
+                    coord_quickmap() + geom_point() +
+                    ylab("Latitude") + xlab("Longitude") + 
+                 geom_point(aes(x=-122.1683, y=41.120),color="red", size = 5)
+tr_plot1   
+```

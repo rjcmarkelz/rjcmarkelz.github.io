@@ -1,0 +1,86 @@
+---
+title: Scraping Weather Data
+author: RJ Cody Markelz
+description: --Avalanche Website Data Scraping
+date: 2022-01-15
+categories: [weather, data, scraping, website, meta-data, research]
+image: /images/weather-scraping-plot.png
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+A quick post showing how to extract data from a website and make a few plots. I chose the Mount Shasta Avalanche Center data because I monitor this everyday throughout the season to see how the avalanche forecast changes and how the snowpack is developing.
+
+# R vest
+There is a great website scraping package that is part of the tidyverse called Rvest. Check out the [Documentation](https://rvest.tidyverse.org/).
+
+```{r, message=FALSE}
+library(rvest)
+library(tidyverse)
+library(lubridate)
+```
+
+```{r, message=FALSE}
+html <- read_html("https://www.shastaavalanche.org/page/seasonal-weather-history-mount-shasta")
+
+# right click on the page to see the table
+html %>%
+    html_element(".msac-wx-history-table") %>%
+    html_table()
+```
+```{r, message=FALSE}
+# Right click on the page and get the xpath to a specific table
+xpath <- "/html/body/div[2]/main/div/article/div/table[2]"
+weather <- html_nodes(html, xpath = xpath)
+html_table(weather)
+```
+```{r, message=FALSE}
+# make a data.frame with the table
+weather2 <- as.data.frame(html_table(weather, fill=TRUE))
+
+# rename columns
+names(weather2) <- paste(weather2[1,], weather2[2,])
+names(weather2)
+names(weather2)[1] <- paste("date")
+
+# remove rows that are now column names
+weather2 <- weather2[-c(1,2),]
+
+# take a look
+glimpse(weather2)
+
+# columns that are numeric should be converted back to such. They were coerced into character vectors because of the first two rows were characters.
+weather2 <- weather2 %>%
+mutate_at(c(2:8), as.numeric)
+
+weather2 <- weather2 %>%
+mutate_at(c(10:20), as.numeric)
+
+# coerce date column
+weather2 <- weather2 %>%
+mutate_at(1, as_date)
+
+# take a quick look
+head(weather2)
+glimpse(weather2)
+
+# Quick few plots to make sure everything looks reasonable
+weather_plot <- ggplot(weather2, aes(x=date, y=`Fx Snow (in) Min`)) +
+  geom_point()
+weather_plot
+
+weather_plot2 <- ggplot(weather2, aes(x=date, y=`Fx Wind (mi/hr) Max`)) +
+  geom_point()
+weather_plot2
+ggsave("~/DATA/images/weather-scraping-plot.png")
+```
+
+Up next: Making sure the data is cleaned up after the scrape and coercion.
+
+
+<!-- # weather_plot2 <- ggplot(weather2, aes(x=date, y=`Ob Temp (°F) Avg`, color = `Fx Rating `)) +
+#   geom_point()
+# weather_plot2
+#
+# # need to fix Fx Rating column data. Inconsistent. -->

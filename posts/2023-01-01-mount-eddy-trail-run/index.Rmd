@@ -1,0 +1,103 @@
+---
+title: Mount Eddy Trail Run 
+description: --Foxtail Pines Revisited
+author: RJ Cody Markelz
+date: 2023-01-01
+categories: [species distribution, modeling, GIS, maps, data, trail run, exercise, explore, illustration]
+image: /images/foxtail-pinecone-web.png
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+<img src="/images/foxtail-pinecone-web.png" alt="Foxtail Pine Cone Illustration" height="600"/>
+Foxtail Pine Cone Illustration
+
+# Introduction
+My partner and I recently revisited one the conifer species that occur in the [Miracle Mile](/posts/2021-06-17-gbif-miracle-mile-species/index.html), but by trail running up to the top of [Mount Eddy](https://en.wikipedia.org/wiki/Mount_Eddy) (9,037 ft; 2,754 m) in the Klamath Range. The final sub-alpine zone near the top of the mountain is a large grove of Foxtail Pine (*Pinus balfouriana*). I paid another visit to that same grove in another [recent post](/posts/2022-04-01-foxtailpinetrailrun/index.html), but did not go up to the higher elevations above 8000 ft.
+
+Load the libraries.
+```{r, message=FALSE}
+library(tidyverse)
+library(gpx)
+library(rayshader)
+library(rgbif)
+library(data.table)
+library(maps)
+```
+
+In-file the trail run gps data and make a data frame to use for plotting.
+```{r, message=FALSE}
+run <-  read_gpx('~/DATA/data/mount_eddy_trail_run.gpx')
+summary(run)
+TrailRun1 <- as.data.frame(run$routes)
+TrailRun1$Time <- as.numeric(row.names(TrailRun1))
+```
+
+Make a quick plot using the latitude and longitude coordinates.
+```{r, message=FALSE}
+TR_p1 <- ggplot() +
+          geom_point(data = TrailRun1, aes(x = Longitude, y = Latitude), color = 'black', size = 2) +
+          xlab("Longitude") + ylab("Latitude")
+TR_p1
+```
+
+Take a look at the elevation profile of the run.
+```{r, message=FALSE}
+TR_p2 <- ggplot() +
+          geom_line(data = TrailRun1, aes(x = Time, y = Elevation), color = 'black', size = 2) +
+          xlab("Time (seconds)") + ylab("Elevation (m)")
+TR_p2
+```
+We can also plot the run and false color it based on the elevation. We can pass this plot to the plot_gg() function in the rayshader package to make a 3D plot of the run. The code for that is not run on the website because it takes too long to render, so I am showing the rendered snapshot as an external image instead.
+
+```{r, message=FALSE}
+TR_p3 <- ggplot() +
+          geom_point(data = TrailRun1, aes(x = Longitude, y = Latitude, color = Elevation), size = 2) +
+          scale_color_continuous(limits=c(800,2800))
+TR_p3
+
+# Not run for website rendering purposes, but you should!
+# plot_gg(TR_p3, width = 15, height = 15, multicore = TRUE, scale = 1000,
+#         zoom = .7, theta = 10, phi = 20, windowsize = c(3000, 3000))
+# Sys.sleep(0.2)
+# render_snapshot(filename = "mt-eddy-run-elevation-plot3.png", clear = TRUE)
+```
+<img src="/images/mount-eddy-trail-run-profile.png" alt="trail run elevation profile" height="600"/>
+
+
+Using the Latitude and Longitude coordinates of the area we can make a general area polygon to be used for a GBIF species observation query to the public database.
+```{r, message=FALSE}
+norcal_geometry <- paste('POLYGON((-122.6 41.35, -122.6 41.25, -122.4 41.25, -122.35 41.25, -122.35 41.35, -122.6 41.35))')
+
+mm_species <- c("pinus balfouriana") # can add multiple species here for larger query
+
+foxtail_data <- occ_data(scientificName = mm_species, hasCoordinate = TRUE, limit = 10000,
+                   geometry = norcal_geometry)
+foxtail_data
+foxtail_coords <- foxtail_data$data[ , c("decimalLongitude", "decimalLatitude",
+ "individualCount", "occurrenceStatus", "coordinateUncertaintyInMeters",
+  "institutionCode", "references")]
+```
+
+Plot the observations on the California map to see the limited polygon sampled.
+```{r, message=FALSE}
+maps::map(database = "state", region = "california")
+points(foxtail_coords[ , c("decimalLongitude", "decimalLatitude")], pch = ".", col = "red", cex = 3)
+```
+
+Plot all of the observations using ggplot for the zoomed in area.
+```{r, message=FALSE}
+foxtail_plot1  <- ggplot(foxtail_coords, aes(x=decimalLongitude, y = decimalLatitude)) +
+                             geom_point(color='red') + labs(title = "MM Zone")
+foxtail_plot1
+```
+
+Combine trail running and foxtail pine occurrence observations.
+```{r, message=FALSE}
+run_plot2 <- ggplot() +
+          coord_quickmap() +
+          geom_point(data = TrailRun1, aes(x = Longitude, y = Latitude), color = 'black') +
+          geom_point(data=foxtail_coords, aes(x = decimalLongitude, y = decimalLatitude), color = 'red') +
+          xlab("Longitude") + ylab("Latitude")
+run_plot2
+```

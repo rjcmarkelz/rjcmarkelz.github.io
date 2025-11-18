@@ -1,0 +1,49 @@
+---
+title: Bay Area Insects
+description: --Insect Species Occurance Data Visualization
+author: RJ Cody Markelz
+date: 2022-05-15
+categories: [species distribution, modeling, GIS, maps, explore, GBIF, data visualization]
+image: /images/bay_area_insects.png
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+I am working on a project using data collected at some of the UC Reserves. I needed to see what observations of insects were available in GBIF. 
+
+I found this [drawing tool](https://boundingbox.klokantech.com/) for bounding boxes. Make sure to export it as OGC WKT and then you can create a POLYGON to use as your query area.
+
+```{r, message=FALSE}
+reserve_geometry <- paste('POLYGON((-121.383275382 35.7567710044, -121.9875234289 36.3607073262, -122.525853507 37.2841110386, -123.1520742101 38.0753438834, -123.7123769445 38.8153202525, -123.8332265539 39.0972469563, -123.4596913976 39.2930774901, -122.0644277258 39.2250244313, -121.7568105383 38.0320888877, -121.4052480383 37.2578829342, -121.119603507 36.7402099684, -120.9987538976 36.1303379589, -121.383275382 35.7567710044))')
+```
+
+Load the libraries.
+```{r, message=FALSE}
+library(rgbif)
+library(tidyverse)
+library(maps)
+```
+
+Query the greater Bay Area for insects using the classKey for *Insecta* using the above geometry. Make a new dataframe with only the data from the query for plotting and data manipulation.
+```{r, message=FALSE}
+insect <- occ_data(classKey = 216, hasCoordinate = TRUE, limit = 1000, geometry = reserve_geometry)
+insect_coords <- insect$data
+head(insect_coords)
+```
+
+Visualize the data for the state of California.
+```{r, message=FALSE}
+maps::map(database = "state", region = "california")
+points(insect_coords[ , c("decimalLongitude", "decimalLatitude")], pch = ".", col = "blue", cex = 3)
+```
+
+Randomly subset the coordinates dataframe and plot species by color. If you have a large screen, you can make a larger plotting window with many more species than 25.
+```{r, message=FALSE}
+set.seed(25344)
+insect_coords_25 <- sample_n(insect_coords, 25)
+species_plot1  <- ggplot(insect_coords_25, aes(x=decimalLongitude, y = decimalLatitude, color =acceptedScientificName)) +
+       geom_point() + labs(x = "Longitude", y = "Latitude", color = "Species", title = "Bay Area Insect Distributions")
+species_plot1
+ggsave("~/DATA/images/bay_area_insects.png")
+```

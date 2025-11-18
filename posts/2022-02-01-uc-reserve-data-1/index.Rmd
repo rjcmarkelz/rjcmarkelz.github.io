@@ -1,0 +1,51 @@
+---
+title: UC Reserve System Environmental Data 
+description: --Basic Plotting of Environmental Variables
+author: RJ Cody Markelz
+categories: [data, research, forest, reserve, fire, tutorial]
+date: 2022-02-01
+image: /images/post_thumbnails/reserve_elevation_species.png
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+A short post on keeping small datasets in a data directory on my site, infiling the data, and then manipulating it.
+
+The UC Reserve System has a many [data sources](https://ucnrs.org/research-resources/) including species lists. For this post I used the [Plant Species List](https://ucnrs.org/plant-list/) Excel File compiled by Brian P. Haggerty and Susan J. Mazer of UC Santa Barbara. I did a little data cleaning on this multi-tabbed spreadsheet.
+
+```{r, message=FALSE}
+library(tidyverse)
+eco_data <- read.csv("~/DATA/data/reserve-eco-data.csv")
+```
+
+Take a quick look at how the data is structured.
+```{r, message=FALSE}
+glimpse(eco_data)
+```
+
+Data clean up and header labeling.
+```{r, message=FALSE}
+eco_data <- eco_data[1:10]
+names(eco_data)[1:10] <- paste(c("reserve", "unique", "taxa", "size", "elevation_low", "elevation_high", "elevation_range","precip", "temp_low", "temp_high"))
+names(eco_data)
+eco_data$temp_high <- as.numeric(eco_data$temp_high)
+```
+
+The classic precipitation vs. temperature ecological plot.
+```{r, message=FALSE}
+classic <- ggplot(eco_data, aes(x=temp_high, y = precip)) +
+geom_point() +
+scale_x_continuous(name="High Temp (C)") +
+scale_y_continuous(name="Precipitation (mm)")
+classic
+```
+
+Another quick plot.
+```{r, message=FALSE}
+elevation_plot1 <- ggplot(eco_data, aes(x=elevation_range, y = unique)) +
+geom_point() +
+scale_x_continuous(name="Elevation Range (m)") +
+scale_y_continuous(name="Number of Unique Species")
+elevation_plot1
+ggsave("~/DATA/images/post_thumbnails/reserve_elevation_species.png")
+```

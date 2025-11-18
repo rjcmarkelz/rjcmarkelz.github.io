@@ -1,0 +1,37 @@
+---
+title: Ski Touring Movement Data
+description: --Visualization of Ski-Tours Around Mount Shasta
+author: RJ Cody Markelz
+date: 2022-02-15
+categories: [data, movement, ski touring, data visualization, data integration, meta-data]
+image: /images/ski_tour_plot.png
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+When thinking about how to combine datasets to ask more complex questions it is important to determine where the overlaps in the datasets might be. As an example, The [Mount Shasta Avalanche Center](https://www.shastaavalanche.org) keeps records of seasonal weather and avalanche forecast data that I discussed in a previous post. I just made a small movement dataset from some of the ski tours I have done in the Mount Shasta area. Here are just a few summary views of the dataset below. In the next series of posts we will overlap the avalanche forecast data, weather data, and the ski touring movement data based on date, time, elevations, and aspects.
+
+
+```{r, message=FALSE}
+library(tidyverse)
+ski_data <- read.csv("~/DATA/data/SkiTouring.csv")
+```
+
+The data set has a number of interesting variables including my movement as I skied, some speed data, some altitude data, and some biometric heart rate data. All of the tours were in the 2019-2020 or the 2020-2021 ski season on the lower slopes of Mount Shasta, Ca.
+
+Take a quick look.
+```{r, message=FALSE}
+glimpse(ski_data)
+summary(ski_data)
+```
+
+Make a quick plot using the latitude and longitude coordinates and color by the date of the tour.
+```{r, message=FALSE}
+ski_plot1 <- ggplot(ski_data, 
+                    aes(x = position_long, y = position_lat, color = date)) +
+                    coord_quickmap() + geom_point() +
+                    ylab("Latitude") + xlab("Longitude")
+  
+ski_plot1
+```

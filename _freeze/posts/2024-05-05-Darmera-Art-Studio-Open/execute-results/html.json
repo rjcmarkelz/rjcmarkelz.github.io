@@ -1,0 +1,14 @@
+{
+  "hash": "61dc27313bd934d8eb761c13694f1ff7",
+  "result": {
+    "markdown": "---\ntitle: Darmera Studios Opening\ndescription: -- Art Gallery - Classroom - Studio\nauthor: RJ Cody Markelz\ndate: 2024-05-05\ncategories: [darmera, studio, gallery, classroom, art, science, adventure, illustration, zine]\nimage: /images/DarmeraLifeByTheRiverImage.png\n---\n\n\n### Gallery Opening\nWe opened the gallery to the public yesterday. The opening had nearly 100 people come through! We were so excited about the turn out. \"Life By The River\" featured art from 13 artists across painting, illustration, mixed media, photography and sculpture. The image of the show is a painting by [**Davis Elliott**](https://www.instagram.com/davis.w.elliott/) titled: \"September (Tribute to Bragwyn)\".\n\nDarmera has three main spaces. The gallery space is in the front facing Dunsmuir Ave. The middle space is a classroom for the various [**art classes and retreats**](https://www.darmera.studio/classes) we are be teaching. The back warehouse space is for our art studios. \n\n[**Sign-up**](https://www.darmera.studio/contact) for our newsletter containing information about gallery shows, classes, workshops, and events. \n\nFollow us on Instagram -  [**@darmera.studio**](https://www.instagram.com/darmera.studio/)\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

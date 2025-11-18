@@ -1,0 +1,16 @@
+{
+  "hash": "737d4e740d70e51485f9d2efb8b68f6c",
+  "result": {
+    "markdown": "---\ntitle: Shasta Sketchers- Nature Journaling Club\nauthor: RJ Cody Markelz\ndate: 2022-09-15\ncategories: [art, sketching, adventure, nature, nature journaling, mount shasta, shastasketchers, community]\nimage: /images/ShastaSketchers-NatureJournaling.png\n---\n\n\n\nOur first Drink and Draw event was a success! We are going to continue this once a month. Additionally, there was some interest in a [Nature Journaling Club](https://www.shastasketchers.com/nature) Meet-up. To find out more about upcoming events please visit our website at [Shasta Sketchers](https://www.shastasketchers.com/).\n\nI made this simple flier for promoting the event:\n![](/images/ShastaSketchers-NatureJournaling.png)\n\nIf you like my sketches you can check out the [sketchbook section](https://www.codymarkelz.art/sketchbook) of my art [portfolio website](https://www.codymarkelz.art/) or follow me on instagram [codymarkelz](https://www.instagram.com/codymarkelz/).\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
