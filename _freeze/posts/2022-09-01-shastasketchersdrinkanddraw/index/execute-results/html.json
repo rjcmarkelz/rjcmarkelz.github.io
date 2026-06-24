@@ -1,0 +1,14 @@
+{
+  "hash": "a2cbdd686f059da3f480270e472e117c",
+  "result": {
+    "markdown": "---\ntitle: Shasta Sketchers\ndescription: --Monthly Drink and Draw\nauthor: RJ Cody Markelz\ndate: 2022-09-01\ncategories: [art, sketching, adventure, beer, bikes, mount shasta, shastasketchers, community]\nimage: /images/ShastasketchersDrinkAndDrawFinal.png\n---\n\n\n\nI have been meeting up with [Dustin Bonivert](https://dustinbonivert.com/) at least once a week to do some live sketching, chat about art process, and taste some micro-brews. We decided to make our meet-ups a community event once a month hosted at a few businesses in town that sell craft beer. To find out more about upcoming events please visit our group at [Shasta Sketchers](https://www.shastasketchers.com/).\n\nIf you like my sketches you can check out the [sketchbook section](https://www.codymarkelz.art/sketchbook) of my art [portfolio website](https://www.codymarkelz.art/) or follow me on instagram [codymarkelz](https://www.instagram.com/codymarkelz/).\n\nI put together a flier based on some of the live sketches I did at these businesses.\n\n<p align=\"Left\">\n  <img src=\"/images/ShastasketchersDrinkAndDrawFinal.png\" alt=\"Drink and Draw Event Flier\" height=\"600\"/>\n</p>\n\nHere are some other sketches I made on-sight at [Deadwood Supply Co.](https://www.deadwoodsupply.com/).\n\n<p align=\"Left\">\n  <img src=\"/images/sketchbook-deadwood-1.jpg\" alt=\"Deadwood Sketch\" height=\"600\"/>\n</p>\n\n<p align=\"Left\">\n  <img src=\"/images/sketchbook-deadwood-2.jpg\" alt=\"Deadwood Sketch\" height=\"600\"/>\n</p>\n\n<p align=\"Left\">\n  <img src=\"/images/sketchbook-deadwood-3.jpg\" alt=\"Deadwood Sketch\" height=\"600\"/>\n</p>\n\n<p align=\"Left\">\n  <img src=\"/images/sketchbook-deadwood-4.jpg\" alt=\"Deadwood Sketch\" height=\"600\"/>\n</p>\n\n<p align=\"Left\">\n  <img src=\"/images/sketchbook-whiskey-row.jpg\" alt=\"Whiskey Row Sketch\" height=\"300\"/>\n</p>\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

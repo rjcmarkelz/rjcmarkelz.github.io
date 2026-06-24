@@ -1,0 +1,98 @@
+---
+title:  Mount Shasta Summit Pass Data
+author: RJ Cody Markelz
+description: --Visualizing Search and Rescue Data
+date: 2024-1-5
+categories: [data, meta-data, research, journalism, data journalism, avalanche, ski touring, back country skiing, search and rescue, mount shasta]
+image: /images/pass-sar-metrics.png
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+I am collaborating with the [Mount Shasta Avalanche Center](https://www.shastaavalanche.org/#/) to visualize data sets and build models to help them forecast avalanches in the area better. A small dataset that they have been collecting since 1992 is the number of Summit Passes sold along with the [Search and Rescue (SAR)](https://en.wikipedia.org/wiki/Search_and_rescue) activities that the Rangers perform. This data is available in the [Avalanche Center Annual Reports and SAR statistics](https://www.shastaavalanche.org/page/annual-reports). 
+
+See the other posts in the Avalanche Data series: [Post 1](/posts/2023-09-21-scraping-weather-data-setup.html), [Post 2](/posts/2023-09-22-scraping-weather-data.html), [Post 3](/posts/2023-09-23-summarizing-weather-data.html) and [Post 4](/posts/2023-10-01-avalanche-data-animation.html).
+
+Here are a few plots I made for the upcoming reports. 
+
+Load the libraries and in-file the data.
+```{r, message=FALSE}
+library(ggplot2)
+library(tidyverse)
+library(gridExtra)
+
+# Read in the CSV file
+pass_data <- read.csv("~/DATA/data/mount-shasta-summit-pass-data.csv")
+```
+
+I always take a quick look at the data to make sure it infiled correctly.
+```{r, message=FALSE}
+head(pass_data)
+summary(pass_data)
+```
+
+
+Transform the data into long format for easier plotting.
+```{r, message=FALSE}
+data_long <- pass_data %>% 
+  pivot_longer(cols = c("FATALITIES", "SEARCH","RESCUE","SELF.RESCUE"), 
+               names_to = "variable", 
+               values_to = "value")
+```
+
+Create the base plots for summit passes sold and the other Search and Rescue statistics collected. 
+```{r, message=FALSE}
+summit_pass1 <- ggplot() +
+  geom_line(data = pass_data, aes(x = YEAR, y = SUMMIT.PASSES.SOLD), color = "blue", size = 1) +
+  scale_y_continuous(name = "Summit Passes Sold") +
+  theme_minimal() +
+  labs(x = "Year")
+summit_pass1
+
+SAR_1 <- ggplot() +
+  geom_bar(data = data_long, aes(x = YEAR, y = value, fill = variable), stat = "identity", position = position_dodge()) +
+  scale_y_continuous(name = "Number of Incidents") +
+  theme_minimal() +
+  labs( x = "Year", fill = "")
+SAR_1
+```
+
+I like to default to a minimal theme to see how it looks and then add gridlines and color back to the plots. Minimal plots are great for people who are used to looking at plots, however the end readers of this report are mostly from the general public so I decided to add in each year along the x-axis. I want to stack the plots so I will also move the legend for the SAR data to the bottom. 
+```{r, message=FALSE}
+summit_pass2 <- ggplot() +
+  geom_line(data = pass_data, aes(x = YEAR, y = SUMMIT.PASSES.SOLD), color = "blue", size = 1) +
+  scale_x_continuous(breaks = seq(1992, 2024, 1))  +
+  scale_y_continuous(name = "Summit Passes Sold") +
+  theme(axis.text.x = element_text(angle = -75, vjust = 0.5)) +
+  labs(x = "Year")
+summit_pass2
+
+SAR_2 <- ggplot() +
+  geom_bar(data = data_long, aes(x = YEAR, y = value, fill = variable), stat = "identity", position = position_dodge()) +
+  scale_x_continuous(breaks = seq(1992, 2024, 1))  +
+  scale_y_continuous(name = "Number of Incidents") +
+  theme(legend.position="bottom", 
+        axis.text.x = element_text(angle = -75, vjust = 0.5)) +
+  labs( x = "Year", fill = "")
+SAR_2
+```
+
+Using the gridExtra package we can combine the plots we already generated.
+```{r, message=FALSE}
+combined_plot <- grid.arrange(summit_pass2, SAR_2)
+combined_plot
+```
+
+These plots are going to be published and printed so we want to make sure they are large enough and have at least a 300 dpi resolution.
+```{r, message=FALSE}
+ggsave(plot = summit_pass2, "~/DATA/images/summit-passes.png", width = 10, dpi = 300)
+
+ggsave(plot = SAR_2, "~/DATA/images/sar-metrics.png", width = 10, dpi = 300)
+
+ggsave(plot = combined_plot, "~/DATA/images/pass-sar-metrics.png", width = 10, height = 8, dpi = 300)
+```
+There we have it. Some basic tidy-verse plots for inclusion in the Annual and SAR reports. 
+
+See the other posts in the Avalanche Data series: [Post 1](/posts/2023-09-21-scraping-weather-data-setup.html), [Post 2](/posts/2023-09-22-scraping-weather-data.html), [Post 3](/posts/2023-09-23-summarizing-weather-data.html) and [Post 4](/posts/2023-10-01-avalanche-data-animation.html).

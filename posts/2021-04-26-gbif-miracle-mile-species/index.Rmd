@@ -1,0 +1,157 @@
+---
+title: Miracle Mile Conifer Species
+description: --Mapping Species Occurance
+author: RJ Cody Markelz
+date: '2021-06-17'
+categories: [species distribution, modeling, GBIF, GIS, maps]
+image: /images/Foxtail_Pine.png
+--- 
+
+<p align="Left">
+  <img src="/images/Foxtail_Pine.png" alt="foxtail pine illustration" height="300"/>
+</p>
+
+# Introduction
+Overall, my research aims to understand how environmental factors, like wild fires, influence biodiversity. One of the most used databases for measuring biodiversity is the Global Biodiversity Information Facility [GBIF](https://www.gbif.org/). This is post is a brief introduction of how to use GBIF, using the example of mapping a few conifer species in California.
+
+
+### Load the libraries
+```{r, message=FALSE}
+library(rgbif)
+library(tidyverse)
+library(data.table)
+library(maps)
+library(leaflet)
+```
+
+
+# Part 1 -Mapping one species
+
+Using the R package function *occ_data()* request data from the GBIF database with the species name,  selecting the observations that have a coordinate, and limiting the query to 10000 observations.
+
+```{r, message=FALSE}
+pinus_balfouriana <- occ_data(scientificName = "Pinus balfouriana", hasCoordinate = TRUE, limit = 1000)
+```
+
+Inspect the data structure.
+
+```{r, message=FALSE}
+summary(pinus_balfouriana)
+```
+
+There are many different groups that contribute data to GBIF. Make sure you cite them accordingly so we can continue to have a great stream of species occurrence data. As a a few examples this species has curated research grade observations from iNaturalist and many from the Humboldt State University.
+
+```{r, message=FALSE}
+head(gbif_citation(pinus_balfouriana), 2)
+```
+
+Take a look at what types of data are collected.
+
+```{r, message=FALSE}
+head(names(pinus_balfouriana$data))
+```
+
+The default GBIF query returns 126 columns of data. We do not have time to go through all of them for a single post so I will subset some important ones for some exploratory plotting purposes. Here I subset the Latitude and Longitude coordinates that we will use for mapping, if the species does occur (important for modeling in future posts), how uncertain the observation is in meters, and the references for the observation.
+
+
+```{r, message=FALSE}
+pinus_balfouriana_coords <- pinus_balfouriana$data[ , c("decimalLongitude", "decimalLatitude",
+"occurrenceStatus", "coordinateUncertaintyInMeters", "references")]
+
+```
+
+
+```{r, message=FALSE}
+# check out how the data is structured
+head(pinus_balfouriana_coords)
+summary(pinus_balfouriana_coords)
+# pinus_balfouriana_coords$decimalLongitude # remove this row of bad data
+pinus_balfouriana_coords <- slice(pinus_balfouriana_coords, -(278))
+
+```
+
+```{r, message=FALSE}
+# two map functions... be clear! There are a few map functions with these different libraries loaded.
+#?map()
+maps::map(database = "state", region = "california")
+points(pinus_balfouriana_coords[ , c("decimalLongitude", "decimalLatitude")], pch = ".", col = "red", cex = 3)
+```
+
+
+
+Subset our search to only Northern California
+```{r, message=FALSE}
+mm_geometry <- paste('POLYGON((-124.4323 42.0021, -121.5045 42.0021, -121.5045 40.194, -124.4323 40.194, -124.4323 42.0021))')
+```
+
+
+```{r, message=FALSE}
+pinus_balfouriana_NC <- occ_data(scientificName = "Pinus balfouriana", hasCoordinate = TRUE, limit = 1000,
+                     geometry = mm_geometry )
+head(pinus_balfouriana_NC)
+
+pinus_balfouriana_NC_coords <- pinus_balfouriana_NC$data[ , c("decimalLongitude", "decimalLatitude",
+ "individualCount", "occurrenceStatus", "coordinateUncertaintyInMeters",
+  "institutionCode", "references")]
+```
+
+Plot the data in a few different ways to see if there is anything strange.
+```{r, message=FALSE}
+plot(pinus_balfouriana_NC_coords$decimalLongitude, pinus_balfouriana_NC_coords$decimalLatitude) # examine the data
+
+pinus_balfouriana_NC_coords %>% leaflet() %>% addTiles() %>%
+addMarkers(~decimalLongitude, ~decimalLatitude)
+```
+
+# Part 2- Map Multiple species
+First test the workflow with only a few species then do entire batch.
+
+```{r, message=FALSE}
+# The test is commented out. Uncomment to test first.
+# mm_species <- c("Pinus balfouriana", "pinus albicaulis", "pinus monticola") # uncomment to run small test version
+
+# Entire miracle mile species set
+mm_species <- c("Pinus balfouriana", "pinus albicaulis", "pinus monticola", "pinus jeffreyi", "pinus ponderosa", "pinus contorta", "pinus lambertiana", "abies concolor", "abies magnifica", "abies lasiocarpa", "picea engelmannii", "picea breweriana", "tsuga mertensiana", "pseudotsuga menziesii", "taxus brevifolia", "calocedrus decurrens", "juniperus communis", "juniperus occidentalis")
+
+mm_all <- occ_data(scientificName = mm_species, hasCoordinate = TRUE, limit = 1000,
+                   geometry = mm_geometry)
+summary(mm_all)
+
+mm_species_coords_list <- vector("list", length(mm_species))
+names(mm_species_coords_list) <- mm_species
+
+for (x in mm_species) {
+  coords <- mm_all[[x]]$data[ , c("decimalLongitude", "decimalLatitude", "occurrenceStatus", "coordinateUncertaintyInMeters", "institutionCode", "references")]
+  mm_species_coords_list[[x]] <- data.frame(species = x, coords)
+}
+```
+
+<!--
+    For "take a look at the output" 'lapply(mm_species_coords_list, head)', reduce output. Maybe look at just the columns? colnames(DF)
+        Further, it would be nice to orient where what these data columns mean? Can you link to the documentation?
+ -->
+
+Using the rbindlist() function from the data.frame package to take all of the species observations from a list to a large data.frame. The columns are the species name, the latitude and longitude coordinates, whether or not there was an observation, if there is any uncertainty about how accurate the GPS coordinate was, what platform the observation was made on, and the specific reference for the observation. Make sure you cite the references so we can keep these rich data streams coming!
+
+```{r, message=FALSE}
+tree_df <- rbindlist(mm_species_coords_list, fill = T)
+dim(tree_df)
+head(tree_df)
+```
+
+Just take a quick look at the raw observations plotted by latitude and longitude.
+
+Plot all of the species on the California map.
+```{r, message=FALSE}
+maps::map(database = "state", region = "california")
+points(tree_df[ , c("decimalLongitude", "decimalLatitude")], pch = ".", col = "blue", cex = 3)
+```
+
+Plot all of the species using ggplot in case you want to visualize the species with something a bit fancier.
+```{r, message=FALSE}
+mm_species_plot1  <- ggplot(tree_df, aes(x=decimalLongitude, y = decimalLatitude, color = species)) +
+       geom_point() + labs(color = "Species", title = "MM Zone")
+mm_species_plot1
+```
+
+There is a lot more you can do for GBIF, but these notes should help for the purpose of mapping species occurrence. Now that the data is somewhat organized we can start doing some proper data cleaning and exploratory data analysis in a future post.

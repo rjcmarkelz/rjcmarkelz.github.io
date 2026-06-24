@@ -1,0 +1,56 @@
+---
+title:  Mount Shasta Wilderness Wildflowers
+description: --Anemone occidentalis population
+author: RJ Cody Markelz
+date: 2022-08-01
+categories: [species distribution, GIS, maps, data, hike, exercise, explore, Anemone occidentalis, wildflowers, plants, GBIF, dr. seuss]
+image: /images/dr-seuss-flower.jpeg
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+<p align="Left">
+  <img src="/images/dr-seuss-flower.jpeg" alt="Anemone occidentalis picture" height="300"/>
+</p>
+
+I went on a quick overnight to a spring fed creek above 8000 feet on Mount Shasta. I noticed these interesting flowers that I have never seen before. They reminded me of something that Dr. Seuss would have illustrated in his various children's books. After searching the internet with no luck I finally needed rely on some California Botany experts to help with the ID: [Anemone occidentalis](https://en.wikipedia.org/wiki/Anemone_occidentalis). The hair-like calyx tissue on top of each ovary are what give this plant it's unique look once reproductively mature. These are similar structures to white dandelion heads and aid in seed dispersal via wind.
+
+Load the libraries.
+```{r, message=FALSE}
+library(tidyverse)
+library(rgbif)
+library(gpx)
+```
+Make the large Northern California polygon to look for observations in GBIF.
+
+```{r, message=FALSE}
+norcal_geometry <- paste('POLYGON((-124.4323 42.0021, -121.5045 42.0021, -121.5045 40.194, -124.4323 40.194, -124.4323 42.0021))')
+
+dr_seuss <- occ_data(scientificName = "Anemone occidentalis", hasCoordinate = TRUE, limit = 1000,
+                   geometry = norcal_geometry)
+# length(dr_seuss)
+head(dr_seuss)
+```
+Quick map of observations in Northern California. There are a few observations across the general bioregion I live near, but none on the hike I went on.
+```{r, message=FALSE}
+dr_seuss_coords <- dr_seuss$data[ , c("decimalLongitude", "decimalLatitude", "occurrenceStatus", "coordinateUncertaintyInMeters", "institutionCode", "references")]
+
+maps::map(database = "state", region = "california")
+points(dr_seuss_coords[ , c("decimalLongitude", "decimalLatitude")], pch = ".", col = "red", cex = 3)
+```
+
+Pull in my hike data using the gpx R library and subset the route to make plotting easier.
+```{r, message=FALSE}
+hike <-  read_gpx('~/DATA/data/mount_shasta_hiking.gpx')
+hike1 <- as.data.frame(hike$routes)
+```
+
+Overlay the hiking data and the image/observation coordinates as a triangle.
+```{r, message=FALSE}
+hike_plot2 <- ggplot() +
+          coord_quickmap() +
+          geom_point(data = hike1, aes(x = Longitude, y = Latitude), color = 'black') +
+          geom_point(aes(x = -122.19, y = 41.36325), pch=25, size= 5, colour="purple") +
+          xlab("Longitude") + ylab("Latitude")
+hike_plot2
+```

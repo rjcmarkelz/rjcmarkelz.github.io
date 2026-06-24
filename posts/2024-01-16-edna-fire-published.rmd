@@ -1,0 +1,24 @@
+---
+title: Fire Impacts on Pollinators Across Ecosystem Types
+description: -- Our paper was published
+author: RJ Cody Markelz
+date: 2024-01-16
+categories: [research, fire, ecology, science, visualization, illustration, pollinators, arthropods, eDNA, zine, fire runner]
+image: /images/wildfire_map.png
+---
+
+<p align="Left">
+  <img src="/images/wildfire_map.png" alt="wildfire_map.png" height="300"/>
+</p>
+
+The post thumbnail was created by Anna Holmquist as a sampling figure for the paper. It shows the 2020 fire outlines around the greater Bay Area and where our Arthropod sampling sites were across six different [University of California Reserves](https://ucnrs.org/). 
+
+Our Paper is now published in the January 2024 issue of Global Change Biology:
+
+Holmquist AJ, __Markelz RJC__, Martinez CC, Gillespie RG (__2024__). The importance of habitat type and historical fire regimes in arthropod community response following large-scale wildfires. Global Change Biology (30:1). [paper](https://onlinelibrary.wiley.com/doi/10.1111/gcb.17135). 
+
+### Abstract
+Wildfires are increasingly altering ecosystems, posing significant challenges for biodiversity conservation and ecosystem management. In this study, we used DNA metabarcoding to assess the response of arthropod communities to large-scale wildfires across diverse habitat types. We sampled six reserves within the University of California Natural Reserve System (UCNRS), each which was partially burned in the 2020 Lightning Complex wildfires in California. Using yellow pan traps to target pollinators, we collected arthropods from burned and unburned sites across multiple habitat types including oak woodland, redwood, scrub, chamise, grassland, forest, and serpentine habitats. We found no significant difference in alpha diversity values between burned
+and unburned sites; instead, seasonal variations played a significant role in arthropod community dynamics, with the emergence of plant species in Spring promoting increased pollinator richness at all sites. Compositional similarity analysis revealed that burn status was not a significant grouping factor when comparing all sites. Instead, community composition primarily varied across reserves, indicating distinct pools of arthropods structured geographically. Habitat type played a crucial role in determining the response of arthropod communities to fire. While communities in grasslands and oak woodlands exhibited recovery following burn, scrublands experienced substantial changes in community composition. Our study highlights the importance of examining community responses to wildfires across broad spatial scales and diverse habitat types. By understanding the nuanced dynamics of arthropod communities in response to fire disturbances, we can develop effective conservation strategies that promote resilience and maintain biodiversity in the face of increasing wildfire frequency and intensity driven by climate change.
+
+The code repository is available [here](https://github.com/rjcmarkelz/edna-fire). The repository also contains instructions on how to make reproducible data science docker containers for each of the major steps in the analysis pipeline. We made the docker container with the largest number of software dependencies available on docker hub [here](https://hub.docker.com/r/codymarkelz/holmquist-etal-edna-fire-paper). A permanent repository with code and a citeable DOI number is available [here](https://zenodo.org/records/10433712).

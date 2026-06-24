@@ -1,0 +1,76 @@
+---
+title: Baja Species 2
+description: --Giant Cardon Cacti
+author: RJ Cody Markelz
+date: 2022-12-07
+categories: [GIS, data, trail run, hike, explore, photography, nature journal, zine, adventure, GBIF, baja, mexico, cacti]
+image: /images/cardon-cacti-map.png
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+<p align="Left">
+  <img src="/images/crested-caracara.jpeg" alt="Crested Cara Cara Image" height="300"/>
+</p>
+
+# Introduction
+The [Crested caracara's](Crested Caracaras) I talked about in my [last post](/posts/2022-12-01-baja-species/index.html) are sitting on top of a [Giant Cardon Cacti (Pachycereus pringlei)](https://en.wikipedia.org/wiki/Pachycereus_pringlei). I wanted to take a look to see if the cacti were as widely distributed in the area as the Caracaras.
+
+### Load the libraries
+```{r, message=FALSE}
+library(rgbif)
+library(sf)
+library(tidyverse)
+library(rnaturalearth)
+library(rnaturalearthdata)
+```
+
+Subset our search to only Southern Baja Sur.
+
+```{r, message=FALSE}
+baja_geometry <- paste('POLYGON((-112.632285206 22.4136232805, -109.1001807138 22.4136232805, -109.1001807138 25.4259663625, -112.632285206 25.4259663625, -112.632285206 22.4136232805))')
+
+cacti <- occ_data(scientificName = "Pachycereus pringlei", hasCoordinate = TRUE, limit = 10000,
+                     geometry = baja_geometry )
+
+cacti_coords <- cacti$data[ , c("decimalLongitude", "decimalLatitude",
+ "individualCount", "occurrenceStatus", "coordinateUncertaintyInMeters",
+  "institutionCode", "references")]
+
+```
+
+I subset the larger dataset to just zoom in on Mexico and plot the appoximate location where my observation was.
+
+```{r, message=FALSE}
+
+cacti_obs <- data.frame(decimalLongitude = c(-110.18917658541324), decimalLatitude = c(23.369598786877447))
+
+world_maps <- ne_countries(scale = "medium", returnclass = "sf")
+mexico <- subset(world_maps, name == "Mexico")
+
+ggplot(data = mexico) +
+                geom_sf() +
+                geom_point(data = cacti_obs, aes(x = decimalLongitude, y = decimalLatitude), color = 'red')
+```
+
+Zoom into the Baja penninsula and plot all the points. There have been many observations of both the Giant Cardon Cacti and the Crested caracara all over the general region I visited.
+
+```{r, message=FALSE}
+theme_set(theme_bw())
+ggplot(data = mexico) +
+        geom_sf() +
+        geom_point(data = cacti_coords, aes(x = decimalLongitude, y = decimalLatitude), color = 'blue') +
+        geom_point(data = cacti_obs, aes(x = decimalLongitude, y = decimalLatitude), color = 'red')
+
+
+ggplot(data = mexico) +
+        geom_sf() +
+        geom_point(data = cacti_coords, aes(x = decimalLongitude, y = decimalLatitude), color = 'blue') +
+        geom_point(data = cacti_obs, aes(x = decimalLongitude, y = decimalLatitude), color = 'red') +
+        coord_sf(xlim = c(-115, -109), ylim = c(22.5, 27), expand = TRUE) +
+        xlab("Longitude") + ylab("Latitude")
+
+ggsave("~/DATA/images/cardon-cacti-map.png")
+
+```

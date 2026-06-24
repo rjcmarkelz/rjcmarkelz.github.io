@@ -1,0 +1,14 @@
+{
+  "hash": "f19178b43f662c5633ccccb9015cd45e",
+  "result": {
+    "markdown": "---\ntitle: Montology Zines\ndescription: -- Adventure Zine Company\nauthor: RJ Cody Markelz\ndate: 2024-03-01\ncategories: [montology, darmera, studio, gallery, classroom, art, science, adventure, illustration, zine, nature journal, teaching, data visualization, fire runner]\nimage: /images/Montology-v0.1-cover.jpg\n---\n\n\n[Montology Studios](https://www.montology.studio/) creates illustrated [Zines](https://en.wikipedia.org/wiki/Zine) and media around the theme of mountains and culture. Think of this Zine as a cross between National Geographic, punk rock, adventure, natural history and data science. Each zine has a specific sub-theme. Some previous themes have been [trail running](https://www.codymarkelz.com/#category=trail%20run), [fire ecology](https://www.codymarkelz.com/#category=fire), [adventure vans](https://www.codymarkelz.com/#category=van), and frugality.\n\nMy first larger Zine issues (40+ pages) are collected illustrated monthly journal entries. The first two issues cover the periods between **August 2021-July 2022** and **August 2022-July 2023**. These first two issues will be available to ship mid-April. \n\nIn addition, four series that will be published quarterly for 2024. The 2024 schedule for sub-themes are Fire Runner Zine (first issue available mid-April), Bicycle Repair Zine (first issue available mid-July), Life by the River Zine (first issue available mid-October), and Primitive Technology (first issue available Late December).\n\nSign up for the [newsletter](https://www.montology.studio/newsletter) to learn how to pre-order or check out the [Etsy Shop](https://www.etsy.com/shop/MontologyZines) to purchase copies of previous issues of the zine.\n\n<p align=\"left\">\n  <img src=\"/images/Montology-v0.1-cover.jpg\" alt=\"Montology Zine Issue Cover\" height=\"300\"/>\n</p>",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

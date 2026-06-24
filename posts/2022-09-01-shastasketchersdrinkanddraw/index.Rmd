@@ -1,0 +1,43 @@
+---
+title: Shasta Sketchers
+description: --Monthly Drink and Draw
+author: RJ Cody Markelz
+date: 2022-09-01
+categories: [art, sketching, adventure, beer, bikes, mount shasta, shastasketchers, community]
+image: /images/ShastasketchersDrinkAndDrawFinal.jpg
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+I have been meeting up with [Dustin Bonivert](https://dustinbonivert.com/) at least once a week to do some live sketching, chat about art process, and taste some micro-brews. We decided to make our meet-ups a community event once a month hosted at a few businesses in town that sell craft beer. To find out more about upcoming events please visit our group at [Shasta Sketchers](https://www.shastasketchers.com/).
+
+If you like my sketches you can check out the [sketchbook section](https://www.codymarkelz.art/sketchbook) of my art [portfolio website](https://www.codymarkelz.art/) or follow me on instagram [codymarkelz](https://www.instagram.com/codymarkelz/).
+
+I put together a flier based on some of the live sketches I did at these businesses.
+
+<p align="Left">
+  <img src="/images/ShastasketchersDrinkAndDrawFinal.jpg" alt="Drink and Draw Event Flier" height="600"/>
+</p>
+
+Here are some other sketches I made on-sight at [Deadwood Supply Co.](https://www.deadwoodsupply.com/).
+
+<p align="Left">
+  <img src="/images/sketchbook-deadwood-1.jpg" alt="Deadwood Sketch" height="600"/>
+</p>
+
+<p align="Left">
+  <img src="/images/sketchbook-deadwood-2.jpg" alt="Deadwood Sketch" height="600"/>
+</p>
+
+<p align="Left">
+  <img src="/images/sketchbook-deadwood-3.jpg" alt="Deadwood Sketch" height="600"/>
+</p>
+
+<p align="Left">
+  <img src="/images/sketchbook-deadwood-4.jpg" alt="Deadwood Sketch" height="600"/>
+</p>
+
+<p align="Left">
+  <img src="/images/sketchbook-whiskey-row.jpg" alt="Whiskey Row Sketch" height="300"/>
+</p>
+

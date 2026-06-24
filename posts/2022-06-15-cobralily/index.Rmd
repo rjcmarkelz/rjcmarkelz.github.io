@@ -1,0 +1,75 @@
+---
+title: California Pitcher Plant 
+description: --Cobra Lily (Darlingtonia californica)
+date: 2022-06-15
+author: RJ Cody Markelz
+categories: [species distribution, GIS, maps, data, trail run, exercise, explore, cobra lily, illustration]
+image: /images/Cobra_lily_sketch.png
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+<p align="Left">
+  <img src="/images/Cobra_lily_sketch.png" alt="Cobra Lily Sketch" height="300"/>
+</p>
+
+
+Spring is in full swing in the higher elevations around Mount Shasta and the surrounding ranges. I am always struck by the large patches of [Cobra Lilies](https://www.fs.fed.us/wildflowers/beauty/serpentines/communities/darlingtonia.shtml) that grow along nutrient poor seeps in alpine meadows. I nearly always stop to take some photos and take in all the cool colors and shapes when out on training runs or hikes. I have made many observations of these over the past few years, but here is a quick post to pull out observations from GBIF.
+
+Load the libraries.
+```{r, message=FALSE}
+library(tidyverse)
+library(rgbif)
+library(gpx)
+```
+Make the large Northern California polygon to look for observations in GBIF.
+
+```{r, message=FALSE}
+norcal_geometry <- paste('POLYGON((-124.4323 42.0021, -121.5045 42.0021, -121.5045 40.194, -124.4323 40.194, -124.4323 42.0021))')
+
+cobra_lily <- occ_data(scientificName = "darlingtonia californica", hasCoordinate = TRUE, limit = 1000,
+                   geometry = norcal_geometry)
+head(cobra_lily)
+```
+Quick map of observations.
+```{r, message=FALSE}
+cobra_lily_coords <- cobra_lily$data[ , c("decimalLongitude", "decimalLatitude", "occurrenceStatus", "coordinateUncertaintyInMeters", "institutionCode", "references")]
+
+maps::map(database = "state", region = "california")
+points(cobra_lily_coords[ , c("decimalLongitude", "decimalLatitude")], pch = ".", col = "red", cex = 3)
+```
+
+Pull in my run data using the gpx R library and subset the route to make plotting easier.
+```{r, message=FALSE}
+run <-  read_gpx('~/DATA/data/cobra_lily_run.gpx')
+TrailRun1 <- as.data.frame(run$routes)
+```
+
+Make a quick run plot.
+```{r, message=FALSE}
+TrailRun_plot <- ggplot() +
+          geom_point(data = TrailRun1, aes(x = Longitude, y = Latitude), color = 'black') +
+          xlab("Longitude") + ylab("Latitude")
+TrailRun_plot
+```
+
+Subset the larger California dataset to only include a zoomed in portion where I ran based on the maximum and minimum coordinates from the run plot above.
+```{r, message=FALSE}
+cobra_lily_coords_sub <- subset(cobra_lily_coords, decimalLatitude > 41.3 & decimalLatitude < 41.365 & decimalLongitude > -122.6 & decimalLongitude < -122.5 )
+```
+
+Overlay the plots and add a triangle for the seep where I observed some Cobra Lilies next to the trail.
+```{r, message=FALSE}
+TrailRun_plot2 <- ggplot() +
+          coord_quickmap() +
+          geom_point(data = TrailRun1, aes(x = Longitude, y = Latitude), color = 'black') +
+          geom_point(data=cobra_lily_coords_sub, aes(x = decimalLongitude, y = decimalLatitude), color = 'red') +
+          geom_point(aes(x = -122.55, y = 41.325), pch=25, size= 12, colour="purple") +
+          xlab("Longitude") + ylab("Latitude")
+TrailRun_plot2
+```
+
+In a follow-up post we will import some additional environmental data to make a multi-layered map.

@@ -1,0 +1,19 @@
+---
+title: Shasta Sketchers
+description: --Nature Journaling Club
+author: RJ Cody Markelz
+date: 2022-09-15
+categories: [art, sketching, adventure, nature, nature journal, mount shasta, shastasketchers, community, illustration, darmera]
+image: /images/ShastaSketchers-NatureJournaling.png
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+Our first Drink and Draw event was a success! We are going to continue this once a month. Additionally, there was some interest in a [Nature Journaling Club](https://www.shastasketchers.com/nature) Meet-up. To find out more about upcoming events please visit our website at [Shasta Sketchers](https://www.shastasketchers.com/). We will start hosting outdoor sketching meet-ups in the spring of 2023.
+
+<p align="Left">
+  <img src="/images/ShastaSketchers-NatureJournaling.png" alt="Shasta Sketchers - Nature Journaling" height="300"/>
+</p>
+
+
+If you like my sketches you can check out the [sketchbook section](https://www.codymarkelz.art/sketchbook) of my art [portfolio website](https://www.codymarkelz.art/) or follow me on instagram [codymarkelz](https://www.instagram.com/codymarkelz/).

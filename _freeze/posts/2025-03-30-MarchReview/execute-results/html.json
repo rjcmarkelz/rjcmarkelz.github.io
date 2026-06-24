@@ -1,0 +1,15 @@
+{
+  "hash": "a6895a397d47b3b4e8e02e223df1c517",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: March 2025 Review\ndescription: Illustrated Review\nauthor: RJ Cody Markelz\ndate: 2025-03-30\ncategories: [Illustration, review, project, skiing]\nimage: /images/January2025Review.jpg\n---\n\n\n<p align=\"Left\">\n\t  <img src=\"/images/January2025Review.jpg\" alt=\"January 2025 Review Illustration\" height=\"600\"/>\n\t</p>\n\t\n# February 2025\n\n## Montology\n\n## Darmera\n\n## Movement\n\n## Community",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
